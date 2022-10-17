@@ -4,7 +4,8 @@ import styles from "./ReactDirectory.module.scss";
 import { PersonaCard } from "./PersonaCard/PersonaCard";
 import { spservices } from "../../../SPServices/spservices";
 import { IReactDirectoryState } from "./IReactDirectoryState";
-import * as strings from "ReactDirectoryWebPartStrings";
+//import * as strings from "ReactDirectoryWebPartStrings";
+import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
     Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption
@@ -21,8 +22,11 @@ import Paging from './Pagination/Paging';
 const slice: any = require('lodash/slice');
 const filter: any = require('lodash/filter');
 const wrapStackTokens: IStackTokens = { childrenGap: 30 };
+  
+
 
 const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
+    const strings = SelectLanguage(props.prefLang);
     let _services: ISPServices = null;
     if (Environment.type === EnvironmentType.Local) {
         _services = new spMockServices();
