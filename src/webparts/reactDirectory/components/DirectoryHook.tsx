@@ -47,9 +47,9 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     const orderOptions: IDropdownOption[] = [
         { key: "FirstName", text: "First Name" },
         { key: "LastName", text: "Last Name" },
-        { key: "Department", text: "Department" },
-        { key: "Location", text: "Location" },
-        { key: "JobTitle", text: "Job Title" }
+        // { key: "Department", text: "Department" },
+        // { key: "Location", text: "Location" },
+        // { key: "JobTitle", text: "Job Title" }
     ];
     const color = props.context.microsoftTeams ? "white" : "";
     // Paging
