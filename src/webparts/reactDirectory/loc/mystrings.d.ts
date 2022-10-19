@@ -12,6 +12,8 @@ declare interface IReactDirectoryWebPartStrings {
   ClearTextSearchPropsLabel: string;
   ClearTextSearchPropsDesc: string;
   PagingLabel: string;
+  FirstName: string;
+  LastName: string;
 }
 
 declare module 'ReactDirectoryWebPartStrings' {
