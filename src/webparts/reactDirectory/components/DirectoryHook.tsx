@@ -45,8 +45,8 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         searchText: ""
     });
     const orderOptions: IDropdownOption[] = [
-        { key: "FirstName", text: "First Name" },
-        { key: "LastName", text: "Last Name" },
+        { key: "FirstName", text: strings.FirstName },
+        { key: "LastName", text: strings.LastName },
         // { key: "Department", text: "Department" },
         // { key: "Location", text: "Location" },
         // { key: "JobTitle", text: "Job Title" }
