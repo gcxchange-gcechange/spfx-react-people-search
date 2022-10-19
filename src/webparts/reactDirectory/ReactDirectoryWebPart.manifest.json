@@ -19,7 +19,7 @@
     "group": { "default": "Other" },
     "title": { "default": "ReactDirectory" },
     "description": { "default": "ReactDirectory description" },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "ProfileSearch",
     "properties": {
       "description": "ReactDirectory"
     }

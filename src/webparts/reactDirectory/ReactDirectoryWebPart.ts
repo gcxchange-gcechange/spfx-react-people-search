@@ -94,22 +94,22 @@ export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactD
                   ]}),
                 PropertyPaneToggle("searchFirstName", {
                   checked: false,
-                  label: "Search on First Name ?"
+                  label: "Search on First Name Only?"
                 }),
-                PropertyPaneTextField('searchProps', {
-                  label: strings.SearchPropsLabel,
-                  description: strings.SearchPropsDesc,
-                  value: this.properties.searchProps,
-                  multiline: false,
-                  resizable: false
-                }),
-                PropertyPaneTextField('clearTextSearchProps', {
-                  label: strings.ClearTextSearchPropsLabel,
-                  description: strings.ClearTextSearchPropsDesc,
-                  value: this.properties.clearTextSearchProps,
-                  multiline: false,
-                  resizable: false
-                }),
+                // PropertyPaneTextField('searchProps', {
+                //   label: strings.SearchPropsLabel,
+                //   description: strings.SearchPropsDesc,
+                //   value: this.properties.searchProps,
+                //   multiline: false,
+                //   resizable: false
+                // }),
+                // PropertyPaneTextField('clearTextSearchProps', {
+                //   label: strings.ClearTextSearchPropsLabel,
+                //   description: strings.ClearTextSearchPropsDesc,
+                //   value: this.properties.clearTextSearchProps,
+                //   multiline: false,
+                //   resizable: false
+                // }),
                 PropertyPaneSlider('pageSize', {
                   label: 'Results per page',
                   showValue: true,
