@@ -1,10 +1,10 @@
 export interface IUserProperties {
-  Department: string;
-  MobilePhone?: String;
+  //Department: string;
+  //MobilePhone?: String;
   PictureUrl: string;
-  Title: string;
+  //Title: string;
   DisplayName: string;
   Email: string;
-  WorkPhone?: string;
-  Location?: string;
+  // WorkPhone?: string;
+  //Location?: string;
 }

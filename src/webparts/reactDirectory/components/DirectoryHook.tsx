@@ -74,14 +74,15 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                         context={props.context}
                         profileProperties={{
                             DisplayName: user.PreferredName,
-                            Title: user.JobTitle,
+                            // Title: user.JobTitle,
                             PictureUrl: user.PictureURL,
                             Email: user.WorkEmail,
-                            Department: user.Department,
+                            /*
+                        Department: user.Department,
                             WorkPhone: user.WorkPhone,
                             Location: user.OfficeNumber
                                 ? user.OfficeNumber
-                                : user.BaseOfficeLocation
+                                : user.BaseOfficeLocation*/
                         }}
                     />
                 );

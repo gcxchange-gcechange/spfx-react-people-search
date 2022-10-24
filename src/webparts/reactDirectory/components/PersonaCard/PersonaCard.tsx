@@ -87,6 +87,7 @@ export class PersonaCard extends React.Component<
    * @memberof PersonaCard
    */
   private _PersonaCard(): JSX.Element {
+    debugger
     return (
       <DocumentCard
         className={styles.documentCard}
@@ -95,14 +96,14 @@ export class PersonaCard extends React.Component<
         <div className={styles.persona}>
           <Persona
             text={this.props.profileProperties.DisplayName}
-            secondaryText={this.props.profileProperties.Title}
-            tertiaryText={this.props.profileProperties.Department}
+            secondaryText={this.props.profileProperties.Email}
+            //tertiaryText={this.props.profileProperties.Department}
             imageUrl={this.props.profileProperties.PictureUrl}
             size={PersonaSize.size72}
             imageShouldFadeIn={false}
             imageShouldStartVisible={true}
           >
-            {this.props.profileProperties.WorkPhone ? (
+            {/* {this.props.profileProperties.WorkPhone ? (
               <div>
                 <Icon iconName="Phone" style={{ fontSize: '12px' }} />
                 <span style={{ marginLeft: 5, fontSize: '12px' }}>
@@ -123,7 +124,7 @@ export class PersonaCard extends React.Component<
               </div>
             ) : (
                 ''
-              )}
+              )} */}
           </Persona>
         </div>
       </DocumentCard>
@@ -154,9 +155,12 @@ export class PersonaCard extends React.Component<
   public render(): React.ReactElement<IPersonaCardProps> {
     return (
       <div className={styles.personaContainer}>
-        {this.state.livePersonaCard
-          ? this._LivePersonaCard()
-          : this._PersonaCard()}
+        {//this.state.livePersonaCard
+         // ? this._LivePersonaCard()
+         // : this._PersonaCard()
+         this._PersonaCard()
+        }
+
       </div>
     );
   }

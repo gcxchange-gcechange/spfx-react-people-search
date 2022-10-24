@@ -1,6 +1,6 @@
 define([], function () {
   return {
-    DropDownPlaceLabelMessage: "Sort People by ",
+    DropDownPlaceLabelMessage: "Sort People test ",
     DropDownPlaceHolderMessage: "Sort by",
     SearchPlaceHolder: "Search for People",
     PropertyPaneDescription: "Search People from Organization Directory",
@@ -10,7 +10,7 @@ define([], function () {
     LoadingText: "Searching for user. Please wait...",
     // SearchPropsLabel: "Properties to search",
     // SearchPropsDesc:
-      // "Enter the properties separated by comma to be used for search",
+    // "Enter the properties separated by comma to be used for search",
     //ClearTextSearchPropsLabel: "Properties whose values are not replaced",
     //ClearTextSearchPropsDesc:
     //  "Enter the properties separated by comma to be sent as it is without replacing space with '+'",
