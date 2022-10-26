@@ -102,28 +102,42 @@ export class PersonaCard extends React.Component<
             imageShouldFadeIn={false}
             imageShouldStartVisible={true}
           >
+            {this.props.profileProperties.Email ? (
+              <div className={styles.textOverflow}>
+                <Icon
+                  iconName="PublicEmail"
+                  style={{ fontSize: "12px", verticalAlign: "sub" }}
+                />
+                <span style={{ marginLeft: 5, fontSize: "12px" }}>
+                  {" "}
+                  {this.props.profileProperties.Email}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
             {this.props.profileProperties.WorkPhone ? (
               <div>
-                <Icon iconName="Phone" style={{ fontSize: '12px' }} />
-                <span style={{ marginLeft: 5, fontSize: '12px' }}>
-                  {' '}
+                <Icon iconName="Phone" style={{ fontSize: "12px" }} />
+                <span style={{ marginLeft: 5, fontSize: "12px" }}>
+                  {" "}
                   {this.props.profileProperties.WorkPhone}
                 </span>
               </div>
             ) : (
-                ''
-              )}
+              ""
+            )}
             {this.props.profileProperties.Location ? (
               <div className={styles.textOverflow}>
-                <Icon iconName="Poi" style={{ fontSize: '12px' }} />
-                <span style={{ marginLeft: 5, fontSize: '12px' }}>
-                  {' '}
+                <Icon iconName="Poi" style={{ fontSize: "12px" }} />
+                <span style={{ marginLeft: 5, fontSize: "12px" }}>
+                  {" "}
                   {this.props.profileProperties.Location}
                 </span>
               </div>
             ) : (
-                ''
-              )}
+              ""
+            )}
           </Persona>
         </div>
       </DocumentCard>
