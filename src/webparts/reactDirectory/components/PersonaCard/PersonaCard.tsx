@@ -154,9 +154,12 @@ export class PersonaCard extends React.Component<
   public render(): React.ReactElement<IPersonaCardProps> {
     return (
       <div className={styles.personaContainer}>
-        {this.state.livePersonaCard
+        {
+          /* {this.state.livePersonaCard
           ? this._LivePersonaCard()
-          : this._PersonaCard()}
+          : this._PersonaCard()} */
+          this._PersonaCard()
+        }
       </div>
     );
   }
