@@ -9,4 +9,5 @@ export interface IReactDirectoryProps {
   searchProps?: string;
   clearTextSearchProps?: string;
   pageSize?: number;
+  prefLang: string;
 }
