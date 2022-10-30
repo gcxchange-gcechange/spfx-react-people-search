@@ -13,6 +13,10 @@ import {
   DocumentCard,
   DocumentCardType,
   Icon,
+  HoverCard,
+  HoverCardType,
+  IPlainCardProps,
+  DefaultButton,
 } from 'office-ui-fabric-react';
 
 const EXP_SOURCE: string = 'SPFxDirectory';
@@ -22,7 +26,7 @@ const LIVE_PERSONA_COMPONENT_ID: string =
 export class PersonaCard extends React.Component<
   IPersonaCardProps,
   IPersonaCardState
-  > {
+> {
   constructor(props: IPersonaCardProps) {
     super(props);
 
@@ -53,7 +57,7 @@ export class PersonaCard extends React.Component<
   public componentDidUpdate(
     prevProps: IPersonaCardProps,
     prevState: IPersonaCardState
-  ): void { }
+  ): void {}
 
   /**
    *
@@ -63,19 +67,38 @@ export class PersonaCard extends React.Component<
    * @memberof PersonaCard
    */
   private _LivePersonaCard() {
-    return React.createElement(
-      this.state.livePersonaCard,
-      {
-        serviceScope: this.props.context.serviceScope,
-        upn: this.props.profileProperties.Email,
-        onCardOpen: () => {
-          console.log('LivePersonaCard Open');
-        },
-        onCardClose: () => {
-          console.log('LivePersonaCard Close');
-        },
-      },
-      this._PersonaCard()
+    // return React.createElement(
+    //   this.state.livePersonaCard,
+    //   {
+    //     serviceScope: this.props.context.serviceScope,
+    //     upn: this.props.profileProperties.Email,
+    //     onCardOpen: () => {
+    //       console.log('LivePersonaCard Open');
+    //     },
+    //     onCardClose: () => {
+    //       console.log('LivePersonaCard Close');
+    //     },
+    //   },
+    //   this._PersonaCard()
+    // );
+    // const expandingCardProps: IExpandingCardProps = {
+    //   onRenderCompactCard: onRenderCompactCard,
+    //   onRenderExpandedCard: onRenderExpandedCard,
+    //   renderData: item,
+    // };
+    return (
+      <div>
+        {this.state.livePersonaCard && (
+          <HoverCard
+            // expandingCardProps={expandingCardProps}
+            instantOpenOnClick={true}
+          >
+            <div>{this.props.profileProperties.DisplayName}</div>
+          </HoverCard>
+        )}
+
+        {this._PersonaCard()}
+      </div>
     );
   }
 
@@ -87,7 +110,7 @@ export class PersonaCard extends React.Component<
    * @memberof PersonaCard
    */
   private _PersonaCard(): JSX.Element {
-    debugger
+    //debugger
     return (
       <DocumentCard
         className={styles.documentCard}
@@ -102,6 +125,7 @@ export class PersonaCard extends React.Component<
             size={PersonaSize.size72}
             imageShouldFadeIn={false}
             imageShouldStartVisible={true}
+            imageInitials="AB"
           >
             {/* {this.props.profileProperties.WorkPhone ? (
               <div>
@@ -145,7 +169,17 @@ export class PersonaCard extends React.Component<
       Log.error(EXP_SOURCE, error, this.props.context.serviceScope);
     }
   }
-
+  private onRenderPlainCard = (): JSX.Element => {
+    return (
+      <div>
+        <DefaultButton
+          // eslint-disable-next-line react/jsx-no-bind
+          //onClick={instantDismissCard}
+          text="Instant Dismiss"
+        />
+      </div>
+    );
+  };
   /**
    *
    *
@@ -153,14 +187,32 @@ export class PersonaCard extends React.Component<
    * @memberof PersonaCard
    */
   public render(): React.ReactElement<IPersonaCardProps> {
+    const plainCardProps: IPlainCardProps = {
+      onRenderPlainCard: this.onRenderPlainCard,
+    };
     return (
       <div className={styles.personaContainer}>
-        {//this.state.livePersonaCard
-         // ? this._LivePersonaCard()
-         // : this._PersonaCard()
-         this._PersonaCard()
+        {
+          //this.state.livePersonaCard
+          //   ? this._LivePersonaCard()
+          // : this._PersonaCard()
+          //this._PersonaCard()
+          //
         }
-
+        <div>
+          {
+            <HoverCard
+              // expandingCardProps={expandingCardProps}
+              instantOpenOnClick={true}
+              cardDismissDelay={2000}
+              type={HoverCardType.plain}
+              plainCardProps={plainCardProps}
+            >
+              {/* <div>{this.props.profileProperties.DisplayName}</div> */}
+              {this._PersonaCard()}
+            </HoverCard>
+          }
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 define([], function () {
   return {
-    DropDownPlaceLabelMessage: "Sort People test ",
+    DropDownPlaceLabelMessage: "Sort People label",
     DropDownPlaceHolderMessage: "Sort by",
     SearchPlaceHolder: "Search for People",
     PropertyPaneDescription: "Search People from Organization Directory",

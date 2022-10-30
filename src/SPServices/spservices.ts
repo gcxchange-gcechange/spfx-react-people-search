@@ -73,6 +73,7 @@ export class spservices implements ISPServices {
                 SortList: [{ "Property": "LastName", "Direction": SortDirection.Ascending }],
             });
             if (users && users.PrimarySearchResults.length > 0) {
+                debugger
                 for (let index = 0; index < users.PrimarySearchResults.length; index++) {
                     let user: any = users.PrimarySearchResults[index];
                     if (user.PictureURL) {

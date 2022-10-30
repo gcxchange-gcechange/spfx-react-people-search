@@ -297,14 +297,14 @@ export default class ReactDirectory extends React.Component<IReactDirectoryProps
               context={this.props.context}
               profileProperties={{
                 DisplayName: user.PreferredName,
-                Title: user.JobTitle,
+                // Title: user.JobTitle,
                 PictureUrl: user.PictureURL,
                 Email: user.WorkEmail,
-                Department: user.Department,
+                //Department: user.Department,
                 WorkPhone: user.WorkPhone,
-                Location: user.OfficeNumber
-                  ? user.OfficeNumber
-                  : user.BaseOfficeLocation
+                // Location: user.OfficeNumber
+                //   ? user.OfficeNumber
+                //   : user.BaseOfficeLocation
               }}
             />
           );
@@ -318,26 +318,31 @@ export default class ReactDirectory extends React.Component<IReactDirectoryProps
           title={this.props.title}
           updateProperty={this.props.updateProperty}
         />
+        <div className="ms-Grid-row">
+          <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6">Label wil goes here</div>
+          <div className={`ms-Grid-col ms-sm6 ms-md6 ms-lg6 ${styles.searchBox}`}>
+            <SearchBox
+              placeholder={strings.SearchPlaceHolder}
+              styles={{
+                root: {
+                  minWidth: 180,
+                  maxWidth: 300,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: 25,
+                },
+              }}
+              onSearch={this._searchUsers}
+              onClear={() => {
+                this._searchUsers("A");
+              }}
+              value={this.state.searchText}
+              onChange={this._searchBoxChanged}
+            />
+          </div>
+        </div>
 
         <div className={styles.searchBox}>
-          <SearchBox
-            placeholder={strings.SearchPlaceHolder}
-            styles={{
-              root: {
-                minWidth: 180,
-                maxWidth: 300,
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginBottom: 25
-              }
-            }}
-            onSearch={this._searchUsers}
-            onClear={() => {
-              this._searchUsers("A");
-            }}
-            value={this.state.searchText}
-            onChange={this._searchBoxChanged}
-          />
           <div>
             <Pivot
               styles={{
@@ -345,8 +350,8 @@ export default class ReactDirectory extends React.Component<IReactDirectoryProps
                   paddingLeft: 10,
                   paddingRight: 10,
                   whiteSpace: "normal",
-                  textAlign: "center"
-                }
+                  textAlign: "center",
+                },
               }}
               linkFormat={PivotLinkFormat.tabs}
               selectedKey={this.state.indexSelectedKey}
@@ -380,20 +385,20 @@ export default class ReactDirectory extends React.Component<IReactDirectoryProps
             {this.state.errorMessage}
           </MessageBar>
         ) : (
-                <div className={styles.dropDownSortBy}>
-                  <Dropdown
-                    placeholder={strings.DropDownPlaceHolderMessage}
-                    label={strings.DropDownPlaceLabelMessage}
-                    options={orderOptions}
-                    selectedKey={this.state.searchString}
-                    onChange={(ev: any, value: IDropdownOption) => {
-                      this._sortPeople(value.key.toString());
-                    }}
-                    styles={{ dropdown: { width: 200 } }}
-                  />
-                  <div>{diretoryGrid}</div>
-                </div>
-              )}
+          <div className={styles.dropDownSortBy}>
+            <Dropdown
+              placeholder={strings.DropDownPlaceHolderMessage}
+              label={strings.DropDownPlaceLabelMessage}
+              options={orderOptions}
+              selectedKey={this.state.searchString}
+              onChange={(ev: any, value: IDropdownOption) => {
+                this._sortPeople(value.key.toString());
+              }}
+              styles={{ dropdown: { width: 200 } }}
+            />
+            <div>{diretoryGrid}</div>
+          </div>
+        )}
       </div>
     );
   }

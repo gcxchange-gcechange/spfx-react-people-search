@@ -7,8 +7,8 @@
 
   .searchBox {
     width: "100%";
-    vertical-align: "middle";
-    margin-bottom: 25;
+    //vertical-align: "middle";
+   // margin-bottom: 25;
   }
   .noUsers {
     margin-left: "auto";
@@ -105,10 +105,14 @@
     text-align: center;
   }
   .searchTextBox {
-      min-width: 180px;
-      max-width: 300px;
+      //min-width: 180px;
+      //max-width: 300px;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 25px;
+     // margin-bottom: 25px;
   }
+}
+
+:global{
+@import 'node_modules/office-ui-fabric-react/dist/css/fabric.css';
 }
