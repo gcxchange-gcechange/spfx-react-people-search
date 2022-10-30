@@ -40,7 +40,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         isLoading: true,
         errorMessage: "",
         hasError: false,
-        indexSelectedKey: "A",
+        indexSelectedKey: 'A',
         searchString: "LastName",
         searchText: ""
     });
@@ -131,10 +131,15 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
 
     let _searchUsers = async (searchText: string) => {
         try {
-            setstate({ ...state, searchText: searchText, isLoading: true });
+            setstate({
+              ...state,
+              searchText: searchText,
+              isLoading: true,
+         
+            });
             if (searchText.length > 0) {
                 let searchProps: string[] = props.searchProps && props.searchProps.length > 0 ?
-                    props.searchProps.split(',') : ['FirstName', 'LastName', 'WorkEmail', 'Department'];
+                    props.searchProps.split(',') : ['FirstName', 'LastName', 'WorkEmail'];
                 let qryText: string = '';
                 let finalSearchText: string = searchText ? searchText.replace(/ /g, '+') : searchText;
                 if (props.clearTextSearchProps) {
@@ -171,7 +176,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                 setstate({
                     ...state,
                     searchText: searchText,
-                    indexSelectedKey: '0',
+                   indexSelectedKey: null,
                     users:
                         users && users.PrimarySearchResults
                             ? users.PrimarySearchResults
@@ -180,7 +185,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                     errorMessage: "",
                     hasError: false
                 });
-                setalphaKey('0');
+               // setalphaKey('0');
             } else {
                 setstate({ ...state, searchText: '' });
                 _searchByAlphabets(true);
@@ -191,7 +196,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     };
 
     const _searchBoxChanged = (newvalue: string): void => {
-        setCurrentPage(1);
+         setCurrentPage(1);
         _searchUsers(newvalue);
     };
     _searchUsers = debounce(500, _searchUsers);
@@ -301,7 +306,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                     value={state.searchText}
                     onChange={_searchBoxChanged} />
                 <div>
-                    <Pivot className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
+                    {<Pivot className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
                         selectedKey={state.indexSelectedKey} onLinkClick={_alphabetChange}
                         linkSize={PivotLinkSize.normal} >
                         {az.map((index: string) => {
@@ -309,7 +314,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                 <PivotItem headerText={index} itemKey={index} key={index} />
                             );
                         })}
-                    </Pivot>
+                    </Pivot> }
                 </div>
             </div>
             {state.isLoading ? (
