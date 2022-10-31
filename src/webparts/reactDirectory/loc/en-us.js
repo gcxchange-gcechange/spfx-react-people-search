@@ -2,11 +2,11 @@ define([], function () {
   return {
     DropDownPlaceLabelMessage: "Sort People by ",
     DropDownPlaceHolderMessage: "Sort by",
-    SearchPlaceHolder: "Search for People",
+    SearchPlaceHolder: "Search by first name",
     PropertyPaneDescription: "Search People from Organization Directory",
     BasicGroupName: "Properties",
     TitleFieldLabel: "Web Part Title",
-    DirectoryMessage: "No users found in directory",
+    DirectoryMessage: "Description: Hmmm… We couldn’t find the user you were looking for. They might not yet have joined GCXchange. Why not invite them, so you can work better, together.​",
     LoadingText: "Searching for user. Please wait...",
     // SearchPropsLabel: "Properties to search",
     // SearchPropsDesc:
