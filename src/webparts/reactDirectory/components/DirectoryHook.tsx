@@ -41,7 +41,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         errorMessage: "",
         hasError: false,
         indexSelectedKey: 'A',
-        searchString: "LastName",
+        searchString: "FirstName",
         searchText: ""
     });
     const orderOptions: IDropdownOption[] = [
@@ -200,86 +200,86 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     };
     _searchUsers = debounce(500, _searchUsers);
 
-    const _sortPeople = async (sortField: string) => {
-        let _users = [...state.users];
-        _users = _users.sort((a: any, b: any) => {
-            switch (sortField) {
-                // Sorte by FirstName
-                case "FirstName":
-                    const aFirstName = a.FirstName ? a.FirstName : "";
-                    const bFirstName = b.FirstName ? b.FirstName : "";
-                    if (aFirstName.toUpperCase() < bFirstName.toUpperCase()) {
-                        return -1;
-                    }
-                    if (aFirstName.toUpperCase() > bFirstName.toUpperCase()) {
-                        return 1;
-                    }
-                    return 0;
-                    break;
-                // Sort by LastName
-                case "LastName":
-                    const aLastName = a.LastName ? a.LastName : "";
-                    const bLastName = b.LastName ? b.LastName : "";
-                    if (aLastName.toUpperCase() < bLastName.toUpperCase()) {
-                        return -1;
-                    }
-                    if (aLastName.toUpperCase() > bLastName.toUpperCase()) {
-                        return 1;
-                    }
-                    return 0;
-                    break;
-                // Sort by Location
-                case "Location":
-                    const aBaseOfficeLocation = a.BaseOfficeLocation
-                        ? a.BaseOfficeLocation
-                        : "";
-                    const bBaseOfficeLocation = b.BaseOfficeLocation
-                        ? b.BaseOfficeLocation
-                        : "";
-                    if (
-                        aBaseOfficeLocation.toUpperCase() <
-                        bBaseOfficeLocation.toUpperCase()
-                    ) {
-                        return -1;
-                    }
-                    if (
-                        aBaseOfficeLocation.toUpperCase() >
-                        bBaseOfficeLocation.toUpperCase()
-                    ) {
-                        return 1;
-                    }
-                    return 0;
-                    break;
-                // Sort by JobTitle
-                case "JobTitle":
-                    const aJobTitle = a.JobTitle ? a.JobTitle : "";
-                    const bJobTitle = b.JobTitle ? b.JobTitle : "";
-                    if (aJobTitle.toUpperCase() < bJobTitle.toUpperCase()) {
-                        return -1;
-                    }
-                    if (aJobTitle.toUpperCase() > bJobTitle.toUpperCase()) {
-                        return 1;
-                    }
-                    return 0;
-                    break;
-                // Sort by Department
-                case "Department":
-                    const aDepartment = a.Department ? a.Department : "";
-                    const bDepartment = b.Department ? b.Department : "";
-                    if (aDepartment.toUpperCase() < bDepartment.toUpperCase()) {
-                        return -1;
-                    }
-                    if (aDepartment.toUpperCase() > bDepartment.toUpperCase()) {
-                        return 1;
-                    }
-                    return 0;
-                    break;
-                default:
-                    break;
-            }
-        });
-        setstate({ ...state, users: _users, searchString: sortField });
-    };
+    // const _sortPeople = async (sortField: string) => {
+    //     let _users = [...state.users];
+    //     _users = _users.sort((a: any, b: any) => {
+    //         switch (sortField) {
+    //             // Sorte by FirstName
+    //             case "FirstName":
+    //                 const aFirstName = a.FirstName ? a.FirstName : "";
+    //                 const bFirstName = b.FirstName ? b.FirstName : "";
+    //                 if (aFirstName.toUpperCase() < bFirstName.toUpperCase()) {
+    //                     return -1;
+    //                 }
+    //                 if (aFirstName.toUpperCase() > bFirstName.toUpperCase()) {
+    //                     return 1;
+    //                 }
+    //                 return 0;
+    //                 break;
+    //             // Sort by LastName
+    //             case "LastName":
+    //                 const aLastName = a.LastName ? a.LastName : "";
+    //                 const bLastName = b.LastName ? b.LastName : "";
+    //                 if (aLastName.toUpperCase() < bLastName.toUpperCase()) {
+    //                     return -1;
+    //                 }
+    //                 if (aLastName.toUpperCase() > bLastName.toUpperCase()) {
+    //                     return 1;
+    //                 }
+    //                 return 0;
+    //                 break;
+    //             // Sort by Location
+    //             case "Location":
+    //                 const aBaseOfficeLocation = a.BaseOfficeLocation
+    //                     ? a.BaseOfficeLocation
+    //                     : "";
+    //                 const bBaseOfficeLocation = b.BaseOfficeLocation
+    //                     ? b.BaseOfficeLocation
+    //                     : "";
+    //                 if (
+    //                     aBaseOfficeLocation.toUpperCase() <
+    //                     bBaseOfficeLocation.toUpperCase()
+    //                 ) {
+    //                     return -1;
+    //                 }
+    //                 if (
+    //                     aBaseOfficeLocation.toUpperCase() >
+    //                     bBaseOfficeLocation.toUpperCase()
+    //                 ) {
+    //                     return 1;
+    //                 }
+    //                 return 0;
+    //                 break;
+    //             // Sort by JobTitle
+    //             case "JobTitle":
+    //                 const aJobTitle = a.JobTitle ? a.JobTitle : "";
+    //                 const bJobTitle = b.JobTitle ? b.JobTitle : "";
+    //                 if (aJobTitle.toUpperCase() < bJobTitle.toUpperCase()) {
+    //                     return -1;
+    //                 }
+    //                 if (aJobTitle.toUpperCase() > bJobTitle.toUpperCase()) {
+    //                     return 1;
+    //                 }
+    //                 return 0;
+    //                 break;
+    //             // Sort by Department
+    //             case "Department":
+    //                 const aDepartment = a.Department ? a.Department : "";
+    //                 const bDepartment = b.Department ? b.Department : "";
+    //                 if (aDepartment.toUpperCase() < bDepartment.toUpperCase()) {
+    //                     return -1;
+    //                 }
+    //                 if (aDepartment.toUpperCase() > bDepartment.toUpperCase()) {
+    //                     return 1;
+    //                 }
+    //                 return 0;
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //     });
+    //     setstate({ ...state, users: _users, searchString: sortField });
+    // };
 
     useEffect(() => {
         setPageSize(props.pageSize);
@@ -351,7 +351,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                                         onPageUpdate={_onPageUpdate}
                                                         currentPage={currentPage} />
                                                 </div>
-                                                <div className={styles.dropDownSortBy}>
+                                                {/* <div className={styles.dropDownSortBy}>
                                                     <Stack horizontal horizontalAlign="center" wrap tokens={wrapStackTokens}>
                                                         <Dropdown
                                                             placeholder={strings.DropDownPlaceHolderMessage}
@@ -364,7 +364,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                                             styles={{ dropdown: { width: 200 } }}
                                                         />
                                                     </Stack>
-                                                </div>
+                                                </div> */}
                                                 <Stack horizontal horizontalAlign="center" wrap tokens={wrapStackTokens}>
                                                     <div>{diretoryGrid}</div>
                                                 </Stack>
