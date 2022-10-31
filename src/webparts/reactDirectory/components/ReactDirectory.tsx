@@ -381,7 +381,7 @@ export default class ReactDirectory extends React.Component<IReactDirectoryProps
           </MessageBar>
         ) : (
                 <div className={styles.dropDownSortBy}>
-                  <Dropdown
+                  {/* <Dropdown
                     placeholder={strings.DropDownPlaceHolderMessage}
                     label={strings.DropDownPlaceLabelMessage}
                     options={orderOptions}
@@ -390,7 +390,7 @@ export default class ReactDirectory extends React.Component<IReactDirectoryProps
                       this._sortPeople(value.key.toString());
                     }}
                     styles={{ dropdown: { width: 200 } }}
-                  />
+                  /> */}
                   <div>{diretoryGrid}</div>
                 </div>
               )}

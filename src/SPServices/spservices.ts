@@ -54,7 +54,9 @@ export class spservices implements ISPServices {
 
     public async searchUsersNew(searchString: string, srchQry: string, isInitialSearch: boolean, pageNumber?: number): Promise<SearchResults> {
         let qrytext: string = '';
-        if (isInitialSearch) qrytext = `FirstName:${searchString}* OR LastName:${searchString}*`;
+        //if (isInitialSearch) qrytext = `FirstName:${searchString}* OR LastName:${searchString}*`;
+        if (isInitialSearch) qrytext = `FirstName:${searchString}*`;
+
         else {
             if (srchQry) qrytext = srchQry;
             else {
@@ -70,7 +72,7 @@ export class spservices implements ISPServices {
                 EnableInterleaving: true,
                 SelectProperties: searchProperties,
                 SourceId: 'b09a7990-05ea-4af9-81ef-edfab16c4e31',
-                SortList: [{ "Property": "LastName", "Direction": SortDirection.Ascending }],
+                SortList: [{ "Property": "FirstName", "Direction": SortDirection.Ascending }],
             });
             if (users && users.PrimarySearchResults.length > 0) {
                 for (let index = 0; index < users.PrimarySearchResults.length; index++) {

@@ -44,13 +44,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         searchString: "FirstName",
         searchText: ""
     });
-    const orderOptions: IDropdownOption[] = [
-        { key: "FirstName", text: strings.FirstName },
-        { key: "LastName", text: strings.LastName },
-        // { key: "Department", text: "Department" },
-        // { key: "Location", text: "Location" },
-        // { key: "JobTitle", text: "Job Title" }
-    ];
+    // const orderOptions: IDropdownOption[] = [
+    //     { key: "FirstName", text: strings.FirstName },
+    //     { key: "LastName", text: strings.LastName },
+    //     // { key: "Department", text: "Department" },
+    //     // { key: "Location", text: "Location" },
+    //     // { key: "JobTitle", text: "Job Title" }
+    // ];
     const color = props.context.microsoftTeams ? "white" : "";
     // Paging
     const [pagedItems, setPagedItems] = useState<any[]>([]);
@@ -138,7 +138,8 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             });
             if (searchText.length > 0) {
                 let searchProps: string[] = props.searchProps && props.searchProps.length > 0 ?
-                    props.searchProps.split(',') : ['FirstName', 'LastName', 'WorkEmail'];
+                    //props.searchProps.split(',') : ['FirstName', 'LastName', 'WorkEmail'];
+                    props.searchProps.split(',') : ['FirstName'];
                 let qryText: string = '';
                 let finalSearchText: string = searchText ? searchText.replace(/ /g, '+') : searchText;
                 if (props.clearTextSearchProps) {
