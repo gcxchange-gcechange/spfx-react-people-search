@@ -92,10 +92,10 @@ export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactD
                     { key: 'en-us', text: 'English' },
                     { key: 'fr-fr', text: 'Français' }
                   ]}),
-                PropertyPaneToggle("searchFirstName", {
-                  checked: false,
-                  label: "Search on First Name Only?"
-                }),
+                // PropertyPaneToggle("searchFirstName", {
+                //   checked: false,
+                //   label: "Search on First Name Only?"
+                // }),
                 // PropertyPaneTextField('searchProps', {
                 //   label: strings.SearchPropsLabel,
                 //   description: strings.SearchPropsDesc,
