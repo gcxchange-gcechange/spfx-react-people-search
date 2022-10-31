@@ -6,7 +6,7 @@ define([], function () {
     PropertyPaneDescription: "Search People from Organization Directory",
     BasicGroupName: "Properties",
     TitleFieldLabel: "Web Part Title",
-    DirectoryMessage: " F Description: Hmmm… We couldn’t find the user you were looking for. They might not yet have joined GCXchange. Why not invite them, so you can work better, together.​",
+    DirectoryMessage: " Hmmm… Nous n’avons pas trouvé l’utilisateur que vous cherchez. Il se peut qu’il ne se soit pas encore inscrit à GCÉchange. Pourquoi ne pas l’inviter afin que vous puissiez mieux travailler, ensemble?​",
     LoadingText: "Recherche en cours. Veuillez patienter...",
     // SearchPropsLabel: "F Properties to search",
     // SearchPropsDesc:
