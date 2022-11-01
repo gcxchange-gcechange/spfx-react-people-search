@@ -4,7 +4,6 @@ import styles from "./ReactDirectory.module.scss";
 import { PersonaCard } from "./PersonaCard/PersonaCard";
 import { spservices } from "../../../SPServices/spservices";
 import { IReactDirectoryState } from "./IReactDirectoryState";
-//import * as strings from "ReactDirectoryWebPartStrings";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
@@ -22,7 +21,7 @@ import Paging from './Pagination/Paging';
 const slice: any = require('lodash/slice');
 const filter: any = require('lodash/filter');
 const wrapStackTokens: IStackTokens = { childrenGap: 30 };
-  
+
 
 
 const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
@@ -44,13 +43,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         searchString: "FirstName",
         searchText: ""
     });
-    // const orderOptions: IDropdownOption[] = [
-    //     { key: "FirstName", text: strings.FirstName },
-    //     { key: "LastName", text: strings.LastName },
-    //     // { key: "Department", text: "Department" },
-    //     // { key: "Location", text: "Location" },
-    //     // { key: "JobTitle", text: "Job Title" }
-    // ];
+
     const color = props.context.microsoftTeams ? "white" : "";
     // Paging
     const [pagedItems, setPagedItems] = useState<any[]>([]);
@@ -131,14 +124,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     let _searchUsers = async (searchText: string) => {
         try {
             setstate({
-              ...state,
-              searchText: searchText,
-              isLoading: true,
-         
+                ...state,
+                searchText: searchText,
+                isLoading: true,
+
             });
             if (searchText.length > 0) {
                 let searchProps: string[] = props.searchProps && props.searchProps.length > 0 ?
-                    //props.searchProps.split(',') : ['FirstName', 'LastName', 'WorkEmail'];
                     props.searchProps.split(',') : ['FirstName'];
                 let qryText: string = '';
                 let finalSearchText: string = searchText ? searchText.replace(/ /g, '+') : searchText;
@@ -148,13 +140,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                         searchProps.map((srchprop, index) => {
                             let ctPresent: any[] = filter(tmpCTProps, (o) => { return o.toLowerCase() == srchprop.toLowerCase(); });
                             if (ctPresent.length > 0) {
-                                if(index == searchProps.length - 1) {
+                                if (index == searchProps.length - 1) {
                                     qryText += `${srchprop}:${searchText}*`;
                                 } else qryText += `${srchprop}:${searchText}* OR `;
                             } else {
-                                if(index == searchProps.length - 1) {
+                                if (index == searchProps.length - 1) {
                                     qryText += `${srchprop}:${finalSearchText}*`;
-                                } else qryText += `${srchprop}:${finalSearchText}* OR `;                                
+                                } else qryText += `${srchprop}:${finalSearchText}* OR `;
                             }
                         });
                     } else {
@@ -176,7 +168,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                 setstate({
                     ...state,
                     searchText: searchText,
-                   indexSelectedKey: null,
+                    indexSelectedKey: null,
                     users:
                         users && users.PrimarySearchResults
                             ? users.PrimarySearchResults
@@ -185,7 +177,6 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                     errorMessage: "",
                     hasError: false
                 });
-               // setalphaKey('0');
             } else {
                 setstate({ ...state, searchText: '' });
                 _searchByAlphabets(true);
@@ -196,91 +187,12 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     };
 
     const _searchBoxChanged = (newvalue: string): void => {
-         setCurrentPage(1);
+        setCurrentPage(1);
         _searchUsers(newvalue);
     };
     _searchUsers = debounce(500, _searchUsers);
 
-    // const _sortPeople = async (sortField: string) => {
-    //     let _users = [...state.users];
-    //     _users = _users.sort((a: any, b: any) => {
-    //         switch (sortField) {
-    //             // Sorte by FirstName
-    //             case "FirstName":
-    //                 const aFirstName = a.FirstName ? a.FirstName : "";
-    //                 const bFirstName = b.FirstName ? b.FirstName : "";
-    //                 if (aFirstName.toUpperCase() < bFirstName.toUpperCase()) {
-    //                     return -1;
-    //                 }
-    //                 if (aFirstName.toUpperCase() > bFirstName.toUpperCase()) {
-    //                     return 1;
-    //                 }
-    //                 return 0;
-    //                 break;
-    //             // Sort by LastName
-    //             case "LastName":
-    //                 const aLastName = a.LastName ? a.LastName : "";
-    //                 const bLastName = b.LastName ? b.LastName : "";
-    //                 if (aLastName.toUpperCase() < bLastName.toUpperCase()) {
-    //                     return -1;
-    //                 }
-    //                 if (aLastName.toUpperCase() > bLastName.toUpperCase()) {
-    //                     return 1;
-    //                 }
-    //                 return 0;
-    //                 break;
-    //             // Sort by Location
-    //             case "Location":
-    //                 const aBaseOfficeLocation = a.BaseOfficeLocation
-    //                     ? a.BaseOfficeLocation
-    //                     : "";
-    //                 const bBaseOfficeLocation = b.BaseOfficeLocation
-    //                     ? b.BaseOfficeLocation
-    //                     : "";
-    //                 if (
-    //                     aBaseOfficeLocation.toUpperCase() <
-    //                     bBaseOfficeLocation.toUpperCase()
-    //                 ) {
-    //                     return -1;
-    //                 }
-    //                 if (
-    //                     aBaseOfficeLocation.toUpperCase() >
-    //                     bBaseOfficeLocation.toUpperCase()
-    //                 ) {
-    //                     return 1;
-    //                 }
-    //                 return 0;
-    //                 break;
-    //             // Sort by JobTitle
-    //             case "JobTitle":
-    //                 const aJobTitle = a.JobTitle ? a.JobTitle : "";
-    //                 const bJobTitle = b.JobTitle ? b.JobTitle : "";
-    //                 if (aJobTitle.toUpperCase() < bJobTitle.toUpperCase()) {
-    //                     return -1;
-    //                 }
-    //                 if (aJobTitle.toUpperCase() > bJobTitle.toUpperCase()) {
-    //                     return 1;
-    //                 }
-    //                 return 0;
-    //                 break;
-    //             // Sort by Department
-    //             case "Department":
-    //                 const aDepartment = a.Department ? a.Department : "";
-    //                 const bDepartment = b.Department ? b.Department : "";
-    //                 if (aDepartment.toUpperCase() < bDepartment.toUpperCase()) {
-    //                     return -1;
-    //                 }
-    //                 if (aDepartment.toUpperCase() > bDepartment.toUpperCase()) {
-    //                     return 1;
-    //                 }
-    //                 return 0;
-    //                 break;
-    //             default:
-    //                 break;
-    //         }
-    //     });
-    //     setstate({ ...state, users: _users, searchString: sortField });
-    // };
+
 
     useEffect(() => {
         setPageSize(props.pageSize);
@@ -314,7 +226,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                 <PivotItem headerText={index} itemKey={index} key={index} />
                             );
                         })}
-                    </Pivot> }
+                    </Pivot>}
                 </div>
             </div>
             {state.isLoading ? (
@@ -322,66 +234,53 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                     <Spinner size={SpinnerSize.large} label={strings.LoadingText} />
                 </div>
             ) : (
-                    <>
-                        {state.hasError ? (
-                            <div style={{ marginTop: '10px' }}>
-                                <MessageBar messageBarType={MessageBarType.error}>
-                                    {state.errorMessage}
-                                </MessageBar>
-                            </div>
-                        ) : (
+                <>
+                    {state.hasError ? (
+                        <div style={{ marginTop: '10px' }}>
+                            <MessageBar messageBarType={MessageBarType.error}>
+                                {state.errorMessage}
+                            </MessageBar>
+                        </div>
+                    ) : (
+                        <>
+                            {!pagedItems || pagedItems.length == 0 ? (
+                                <div className={styles.noUsers}>
+                                    <Icon
+                                        iconName={"ProfileSearch"}
+                                        style={{ fontSize: "54px", color: color }}
+                                    />
+                                    <Label>
+                                        <span style={{ marginLeft: 5, fontSize: "26px", color: color }}>
+                                            {strings.DirectoryMessage}
+                                        </span>
+                                    </Label>
+                                </div>
+                            ) : (
                                 <>
-                                    {!pagedItems || pagedItems.length == 0 ? (
-                                        <div className={styles.noUsers}>
-                                            <Icon
-                                                iconName={"ProfileSearch"}
-                                                style={{ fontSize: "54px", color: color }}
-                                            />
-                                            <Label>
-                                                <span style={{ marginLeft: 5, fontSize: "26px", color: color }}>
-                                                    {strings.DirectoryMessage}
-                                                </span>
-                                            </Label>
-                                        </div>
-                                    ) : (
-                                            <>
-                                                <div style={{ width: '100%', display: 'inline-block' }}>
-                                                    <Paging
-                                                        totalItems={state.users.length}
-                                                        itemsCountPerPage={pageSize}
-                                                        onPageUpdate={_onPageUpdate}
-                                                        currentPage={currentPage} />
-                                                </div>
-                                                {/* <div className={styles.dropDownSortBy}>
-                                                    <Stack horizontal horizontalAlign="center" wrap tokens={wrapStackTokens}>
-                                                        <Dropdown
-                                                            placeholder={strings.DropDownPlaceHolderMessage}
-                                                            label={strings.DropDownPlaceLabelMessage}
-                                                            options={orderOptions}
-                                                            selectedKey={state.searchString}
-                                                            onChange={(ev: any, value: IDropdownOption) => {
-                                                                _sortPeople(value.key.toString());
-                                                            }}
-                                                            styles={{ dropdown: { width: 200 } }}
-                                                        />
-                                                    </Stack>
-                                                </div> */}
-                                                <Stack horizontal horizontalAlign="center" wrap tokens={wrapStackTokens}>
-                                                    <div>{diretoryGrid}</div>
-                                                </Stack>
-                                                <div style={{ width: '100%', display: 'inline-block' }}>
-                                                    <Paging
-                                                        totalItems={state.users.length}
-                                                        itemsCountPerPage={pageSize}
-                                                        onPageUpdate={_onPageUpdate}
-                                                        currentPage={currentPage} />
-                                                </div>
-                                            </>
-                                        )}
+                                    <div style={{ width: '100%', display: 'inline-block' }}>
+                                        <Paging
+                                            totalItems={state.users.length}
+                                            itemsCountPerPage={pageSize}
+                                            onPageUpdate={_onPageUpdate}
+                                            currentPage={currentPage} />
+                                    </div>
+
+                                    <Stack horizontal horizontalAlign="center" wrap tokens={wrapStackTokens}>
+                                        <div>{diretoryGrid}</div>
+                                    </Stack>
+                                    <div style={{ width: '100%', display: 'inline-block' }}>
+                                        <Paging
+                                            totalItems={state.users.length}
+                                            itemsCountPerPage={pageSize}
+                                            onPageUpdate={_onPageUpdate}
+                                            currentPage={currentPage} />
+                                    </div>
                                 </>
                             )}
-                    </>
-                )}
+                        </>
+                    )}
+                </>
+            )}
         </div>
     );
 };
