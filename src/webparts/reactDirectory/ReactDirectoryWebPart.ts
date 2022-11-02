@@ -12,7 +12,6 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'ReactDirectoryWebPartStrings';
-import ReactDirectory from './components/ReactDirectory';
 import DirectoryHook from "./components/DirectoryHook";
 import { IReactDirectoryProps } from './components/IReactDirectoryProps';
 
