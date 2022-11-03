@@ -11,8 +11,7 @@ import {
 } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'ReactDirectoryWebPartStrings';
-import ReactDirectory from './components/ReactDirectory';
+import * as strings from 'ReactDirectoryWebPartStrings'; 
 import DirectoryHook from "./components/DirectoryHook";
 import { IReactDirectoryProps } from './components/IReactDirectoryProps';
 
@@ -30,16 +29,6 @@ export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactD
   public render(): void {
     const element: React.ReactElement<IReactDirectoryProps> =
       React.createElement(
-        // ReactDirectory,
-        // {
-        //   title: this.properties.title,
-        //   context: this.context,
-        //   searchFirstName: this.properties.searchFirstName,
-        //   displayMode: this.displayMode,
-        //   updateProperty: (value: string) => {
-        //     this.properties.title = value;
-        //   }
-        // },
         DirectoryHook,
         {
           title: this.properties.title,
@@ -91,25 +80,9 @@ export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactD
                     { key: 'account', text: 'Account' },
                     { key: 'en-us', text: 'English' },
                     { key: 'fr-fr', text: 'Français' }
-                  ]}),
-                PropertyPaneToggle("searchFirstName", {
-                  checked: false,
-                  label: "Search on First Name Only?"
+                  ]
                 }),
-                // PropertyPaneTextField('searchProps', {
-                //   label: strings.SearchPropsLabel,
-                //   description: strings.SearchPropsDesc,
-                //   value: this.properties.searchProps,
-                //   multiline: false,
-                //   resizable: false
-                // }),
-                // PropertyPaneTextField('clearTextSearchProps', {
-                //   label: strings.ClearTextSearchPropsLabel,
-                //   description: strings.ClearTextSearchPropsDesc,
-                //   value: this.properties.clearTextSearchProps,
-                //   multiline: false,
-                //   resizable: false
-                // }),
+
                 PropertyPaneSlider('pageSize', {
                   label: 'Results per page',
                   showValue: true,
