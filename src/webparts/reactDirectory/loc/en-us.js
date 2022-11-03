@@ -1,13 +1,13 @@
 define([], function () {
   return {
-    SearchPlaceHolder: "Search for People",
+
+    SearchPlaceHolder: "Search by first name",
     PropertyPaneDescription: "Search People from Organization Directory",
     BasicGroupName: "Properties",
-    TitleFieldLabel: "Web Part Title",
-    DirectoryMessage: "No users found in directory",
-    LoadingText: "Searching for user. Please wait...",
+    TitleFieldLabel: "Web Part Title",   
+
     PagingLabel: "Results per page",
-    FirstName: "First Name",
-    LastName: "Last Name",
+    DirectoryMessage: "Description: Hmmm… We couldn’t find the user you were looking for. They might not yet have joined GCXchange. Why not invite them, so you can work better, together.​",
+    LoadingText: "Searching for user. Please wait...",
   };
 });

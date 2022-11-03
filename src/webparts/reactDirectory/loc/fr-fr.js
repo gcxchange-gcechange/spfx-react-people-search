@@ -1,15 +1,12 @@
 define([], function () {
   return {
-    DropDownPlaceLabelMessage: "F Sort People by ",
-    DropDownPlaceHolderMessage: " F Sort by",
-    SearchPlaceHolder: " F Search for People",
-    PropertyPaneDescription: "F Search People from Organization Directory",
-    BasicGroupName: " F Properties",
-    TitleFieldLabel: " F Web Part Title",
-    DirectoryMessage: "F No users found in directory",
-    LoadingText: "F Searching for user. Please wait...",
-    PagingLabel: "F Results per page",
-    FirstName: "F First Name",
-    LastName: "F Last Name",
+
+    SearchPlaceHolder: "Recherche par prénom ",
+    PropertyPaneDescription: "Search People from Organization Directory",
+    BasicGroupName: "Properties",
+    TitleFieldLabel: "Web Part Title",
+    PagingLabel: "Results per page",   
+    DirectoryMessage: " Hmmm… Nous n’avons pas trouvé l’utilisateur que vous cherchez. Il se peut qu’il ne se soit pas encore inscrit à GCÉchange. Pourquoi ne pas l’inviter afin que vous puissiez mieux travailler, ensemble?​",
+    LoadingText: "Recherche en cours. Veuillez patienter...", 
   };
 });
