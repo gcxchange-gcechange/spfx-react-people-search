@@ -6,6 +6,8 @@ declare interface IReactDirectoryWebPartStrings {
   PagingLabel: string;
   DirectoryMessage: string;
   LoadingText: string;
+
+
 }
 
 declare module 'ReactDirectoryWebPartStrings' {
