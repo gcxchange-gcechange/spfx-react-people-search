@@ -7,7 +7,7 @@ import { IReactDirectoryState } from "./IReactDirectoryState";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
-    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption
+    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption,IStackItemStyles
 } from "office-ui-fabric-react";
 import { Stack, IStackStyles, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
 import { debounce } from "throttle-debounce";
@@ -208,15 +208,32 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         _searchByAlphabets(true);
     }, [props]);
 
+    const itemAlignmentsStackTokens: IStackTokens = {
+        childrenGap: 20,       
+      };
+      const stackItemStyles: IStackItemStyles = {
+        root: {
+          paddingTop: 5,
+        },
+      };
+
     return (
         <div className={styles.reactDirectory}>
             <WebPartTitle displayMode={props.displayMode} title={props.title}
                 updateProperty={props.updateProperty} />
             <div className={styles.searchBox}>
-                <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
-                    onSearch={_searchUsers}
-                    value={state.searchText}
-                    onChange={_searchBoxChanged} />
+                <Stack horizontal tokens={itemAlignmentsStackTokens}>
+                    <Stack.Item order={1} styles={stackItemStyles}>
+                        <span>{strings.SearchBoxLabel}</span>
+                    </Stack.Item>
+                    <Stack.Item order={2} >
+                        <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
+                            onSearch={_searchUsers}
+                            value={state.searchText}
+                            onChange={_searchBoxChanged} />
+                    </Stack.Item>
+                </Stack>
+
                 <div>
                     {<Pivot className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
                         selectedKey={state.indexSelectedKey} onLinkClick={_alphabetChange}

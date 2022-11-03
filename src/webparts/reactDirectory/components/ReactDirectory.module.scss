@@ -9,7 +9,11 @@
     width: "100%";
     vertical-align: "middle";
     margin-bottom: 25;
+    text-align: "center";
   }
+  :global(.css-121){
+    justify-content:center  }
+    
   .noUsers {
     margin-left: "auto";
     margin-right: "auto";
