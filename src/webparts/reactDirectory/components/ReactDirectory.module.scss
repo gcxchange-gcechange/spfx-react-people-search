@@ -9,7 +9,13 @@
     width: "100%";
     vertical-align: "middle";
     margin-bottom: 25;
+    text-align: "center";
   }
+  :global(.ms-Stack){
+    justify-content:center; 
+    text-align: "center";
+  }
+    
   .noUsers {
     margin-left: "auto";
     margin-right: "auto";
