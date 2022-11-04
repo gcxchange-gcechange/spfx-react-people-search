@@ -11,8 +11,10 @@
     margin-bottom: 25;
     text-align: "center";
   }
-  :global(.css-121){
-    justify-content:center  }
+  :global(.ms-Stack){
+    justify-content:center; 
+    text-align: "center";
+  }
     
   .noUsers {
     margin-left: "auto";
