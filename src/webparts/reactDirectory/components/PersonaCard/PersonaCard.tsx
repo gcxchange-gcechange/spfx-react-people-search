@@ -110,7 +110,7 @@ export class PersonaCard extends React.Component<
                 />
                 <span style={{ marginLeft: 5, fontSize: "12px" }}>
                   {" "}
-                 { <a href = {`mailto: ${this.props.profileProperties.Email}`}>{this.props.profileProperties.Email}</a> }
+                 { <a href = {`mailto: ${this.props.profileProperties.Email}`} target="_blank">{this.props.profileProperties.Email}</a> }
                 </span>
               </div>
             ) : (
