@@ -187,8 +187,12 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     };
 
     const _searchBoxChanged = (newvalue: string): void => {
-        setCurrentPage(1);
-        _searchUsers(newvalue);
+        setTimeout(() => {
+            setCurrentPage(1);
+            _searchUsers(newvalue);
+            
+        }, 10000);
+        
     };
     _searchUsers = debounce(500, _searchUsers);
 
@@ -230,7 +234,8 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                         <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
                             onSearch={_searchUsers}
                             value={state.searchText}
-                            onChange={_searchBoxChanged} />
+                            //onChange={_searchBoxChanged} 
+                            />
                     </Stack.Item>
                 </Stack>
 
