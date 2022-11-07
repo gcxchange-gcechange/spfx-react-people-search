@@ -189,13 +189,11 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     const _searchBoxChanged = (newvalue: string): void => {
         setTimeout(() => {
             setCurrentPage(1);
-            _searchUsers(newvalue);
-            
+            _searchUsers(newvalue);            
         }, 10000);
         
     };
     _searchUsers = debounce(500, _searchUsers);
-
 
 
     useEffect(() => {
