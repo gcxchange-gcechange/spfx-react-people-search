@@ -131,7 +131,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             });
             if (searchText.length > 0) {
                 let searchProps: string[] = props.searchProps && props.searchProps.length > 0 ?
-                    props.searchProps.split(',') : ['FirstName'];
+                    props.searchProps.split(',') : ['FirstName','LastName', 'PreferredName',];
                 let qryText: string = '';
                 let finalSearchText: string = searchText ? searchText.replace(/ /g, '+') : searchText;
                 if (props.clearTextSearchProps) {
