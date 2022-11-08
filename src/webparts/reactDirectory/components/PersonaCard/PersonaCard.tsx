@@ -238,7 +238,7 @@ export class PersonaCard extends React.Component<
         </Stack>
       </div>
     );
-  };
+  }
 
   /**
    *
