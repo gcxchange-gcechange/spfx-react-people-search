@@ -1,11 +1,9 @@
-import * as React from 'react';
-import styles from './PersonaCard.module.scss';
-import { IPersonaCardProps } from './IPersonaCardProps';
-import { IPersonaCardState } from './IPersonaCardState';
-import {
-  Log, Environment, EnvironmentType,
-} from '@microsoft/sp-core-library';
-import { SPComponentLoader } from '@microsoft/sp-loader';
+import * as React from "react";
+import styles from "./PersonaCard.module.scss";
+import { IPersonaCardProps } from "./IPersonaCardProps";
+import { IPersonaCardState } from "./IPersonaCardState";
+import { Log, Environment, EnvironmentType } from "@microsoft/sp-core-library";
+import { SPComponentLoader } from "@microsoft/sp-loader";
 
 import {
   Persona,
@@ -13,16 +11,25 @@ import {
   DocumentCard,
   DocumentCardType,
   Icon,
-} from 'office-ui-fabric-react';
+  HoverCard,
+  IPlainCardProps,
+  DefaultButton,
+  HoverCardType,
+  Stack,
+  IStackTokens,
+  IStackStyles,
+  DefaultPalette,
+  IStackItemStyles,
+} from "office-ui-fabric-react";
 
-const EXP_SOURCE: string = 'SPFxDirectory';
+const EXP_SOURCE: string = "SPFxDirectory";
 const LIVE_PERSONA_COMPONENT_ID: string =
-  '914330ee-2df2-4f6e-a858-30c23a812408';
+  "914330ee-2df2-4f6e-a858-30c23a812408";
 
 export class PersonaCard extends React.Component<
   IPersonaCardProps,
   IPersonaCardState
-  > {
+> {
   constructor(props: IPersonaCardProps) {
     super(props);
 
@@ -53,7 +60,7 @@ export class PersonaCard extends React.Component<
   public componentDidUpdate(
     prevProps: IPersonaCardProps,
     prevState: IPersonaCardState
-  ): void { }
+  ): void {}
 
   /**
    *
@@ -69,10 +76,10 @@ export class PersonaCard extends React.Component<
         serviceScope: this.props.context.serviceScope,
         upn: this.props.profileProperties.Email,
         onCardOpen: () => {
-          console.log('LivePersonaCard Open');
+          console.log("LivePersonaCard Open");
         },
         onCardClose: () => {
-          console.log('LivePersonaCard Close');
+          console.log("LivePersonaCard Close");
         },
       },
       this._PersonaCard()
@@ -159,6 +166,80 @@ export class PersonaCard extends React.Component<
     }
   }
 
+  private onRenderPlainCard = (): JSX.Element => {
+    // Tokens definition
+    const containerStackTokens: IStackTokens = { childrenGap: 5 };
+    const horizontalGapStackTokens: IStackTokens = {
+      childrenGap: 20,
+    };
+    const itemAlignmentsStackTokens: IStackTokens = {
+      childrenGap: 20,
+    };
+    // Styles definition
+    const stackStyles: IStackStyles = {
+      root: {
+        padding: 0,
+      },
+    };
+    const stackItemStyles: IStackItemStyles = {
+      root: {
+        padding: 5,
+      },
+    };
+    return (
+      <div className={styles.customPopup}>
+        <Stack>
+          <Stack horizontal tokens={itemAlignmentsStackTokens}>
+            <Stack.Item align="auto" styles={stackItemStyles}>
+              <div className={styles.customPopupImg}>
+                <img
+                  src={this.props.profileProperties.PictureUrl}
+                  alt={this.props.profileProperties.DisplayName}
+                />
+              </div>
+            </Stack.Item>
+            <Stack.Item align="stretch" styles={stackItemStyles}>
+              <div>
+                <p className={styles.customPopupDisplayName}>
+                  {this.props.profileProperties.DisplayName}
+                </p>
+              </div>
+            </Stack.Item>
+          </Stack>
+          <Stack horizontal tokens={itemAlignmentsStackTokens}>
+            <Stack.Item align="center" styles={stackItemStyles}>
+              <div>
+                <a
+                  href={`mailto:${this.props.profileProperties.Email}`}
+                  target="_blank"
+                >
+                  <Icon
+                    iconName="PublicEmail"
+                    style={{ verticalAlign: "sub", marginRight: 5 }}
+                  />
+                  Send email
+                </a>
+              </div>
+            </Stack.Item>
+            <Stack.Item align="center" styles={stackItemStyles}>
+              <div>
+                <a
+                  href={`MSTeams:/l/chat/0/0?users=${this.props.profileProperties.Email}`}
+                >
+                  <Icon
+                    iconName="Chat"
+                    style={{ verticalAlign: "sub", marginRight: 5 }}
+                  />
+                  Start chat
+                </a>
+              </div>
+            </Stack.Item>
+          </Stack>
+        </Stack>
+      </div>
+    );
+  };
+
   /**
    *
    *
@@ -166,13 +247,20 @@ export class PersonaCard extends React.Component<
    * @memberof PersonaCard
    */
   public render(): React.ReactElement<IPersonaCardProps> {
+    const plainCardProps: IPlainCardProps = {
+      onRenderPlainCard: this.onRenderPlainCard,
+    };
     return (
       <div className={styles.personaContainer}>
         {
-          /* {this.state.livePersonaCard
-          ? this._LivePersonaCard()
-          : this._PersonaCard()} */
-          this._PersonaCard()
+          <HoverCard
+            instantOpenOnClick={true}
+            cardDismissDelay={2000}
+            type={HoverCardType.plain}
+            plainCardProps={plainCardProps}
+          >
+            {this._PersonaCard()}
+          </HoverCard>
         }
       </div>
     );
