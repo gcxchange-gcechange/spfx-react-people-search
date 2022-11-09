@@ -24,7 +24,7 @@ import {
 
 const EXP_SOURCE: string = "SPFxDirectory";
 const LIVE_PERSONA_COMPONENT_ID: string =
-  "914330ee-2df2-4f6e-a858-30c23a812408";
+  "914330ee-2df2-4f6e-a858-30c23a812408"; //component Id of the Live Persona Card module 
 
 export class PersonaCard extends React.Component<
   IPersonaCardProps,
