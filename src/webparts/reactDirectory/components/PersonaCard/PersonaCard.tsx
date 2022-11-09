@@ -255,7 +255,7 @@ export class PersonaCard extends React.Component<
         {
           <HoverCard
             instantOpenOnClick={true}
-            cardDismissDelay={2000}
+            cardDismissDelay={500}
             type={HoverCardType.plain}
             plainCardProps={plainCardProps}
           >
