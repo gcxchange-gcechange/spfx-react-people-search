@@ -221,19 +221,7 @@ export class PersonaCard extends React.Component<
                 </a>
               </div>
             </Stack.Item>
-            <Stack.Item align="center" styles={stackItemStyles}>
-              <div>
-                <a
-                  href={`MSTeams:/l/chat/0/0?users=${this.props.profileProperties.Email}`}
-                >
-                  <Icon
-                    iconName="Chat"
-                    style={{ verticalAlign: "sub", marginRight: 5 }}
-                  />
-                  Start chat
-                </a>
-              </div>
-            </Stack.Item>
+           
           </Stack>
         </Stack>
       </div>
