@@ -1,4 +1,4 @@
-@import '~office-ui-fabric-react/dist/sass/References.scss';
+@import "~office-ui-fabric-react/dist/sass/References.scss";
 
 .personaContainer {
   display: inline-block;
@@ -27,11 +27,51 @@
 }
 
 .textOverflow {
-    word-break: break-all;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.customPopup {
+  padding: 30px;
+  min-width: 300px;
+  min-height: 150px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  width: auto;
+    color: rgb(50, 49, 48);
+
+}
+.customPopupImg {
+  width: 100px;
+  height: 100px;
+}
+.customPopupImg img {
+  border-radius: 50%;
+}
+.customPopup a {
+  text-decoration: none;
+  font-size: 15px;
+  padding:10px 20px;
+  color:#333
+}
+.customPopup a:hover {
+  background-color: #ccc;
+
+}
+
+:global(.ms-Stack) {
+  justify-content: center;
+  text-align: center;
+}
+.customPopupDisplayName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(50, 49, 48);
+  font-weight: 300;
+  font-size: 28px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
