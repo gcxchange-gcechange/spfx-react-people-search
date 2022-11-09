@@ -7,7 +7,7 @@ import { IReactDirectoryState } from "./IReactDirectoryState";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
-    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption,IStackItemStyles
+    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles
 } from "office-ui-fabric-react";
 import { Stack, IStackStyles, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
 import { debounce } from "throttle-debounce";
@@ -131,7 +131,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             });
             if (searchText.length > 0) {
                 let searchProps: string[] = props.searchProps && props.searchProps.length > 0 ?
-                    props.searchProps.split(',') : ['FirstName','LastName', 'PreferredName',];
+                    props.searchProps.split(',') : ['FirstName', 'LastName', 'PreferredName',];
                 let qryText: string = '';
                 let finalSearchText: string = searchText ? searchText.replace(/ /g, '+') : searchText;
                 if (props.clearTextSearchProps) {
@@ -186,13 +186,6 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         }
     };
 
-    const _searchBoxChanged = (newvalue: string): void => {
-        setTimeout(() => {
-            setCurrentPage(1);
-            _searchUsers(newvalue);            
-        }, 10000);
-        
-    };
     _searchUsers = debounce(500, _searchUsers);
 
 
@@ -211,13 +204,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     }, [props]);
 
     const itemAlignmentsStackTokens: IStackTokens = {
-        childrenGap: 20,       
-      };
-      const stackItemStyles: IStackItemStyles = {
+        childrenGap: 20,
+    };
+    const stackItemStyles: IStackItemStyles = {
         root: {
-          paddingTop: 5,
+            paddingTop: 5,
         },
-      };
+    };
 
     return (
         <div className={styles.reactDirectory}>
@@ -232,8 +225,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                         <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
                             onSearch={_searchUsers}
                             value={state.searchText}
-                            //onChange={_searchBoxChanged} 
-                            />
+                        />
                     </Stack.Item>
                 </Stack>
 
