@@ -7,9 +7,10 @@ import { IReactDirectoryState } from "./IReactDirectoryState";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
-    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption,IStackItemStyles
+    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles, Image, IImageProps, ImageFit
 } from "office-ui-fabric-react";
 import { Stack, IStackStyles, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
+
 import { debounce } from "throttle-debounce";
 import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
 import { ISPServices } from "../../../SPServices/ISPServices";
@@ -17,6 +18,7 @@ import { Environment, EnvironmentType } from "@microsoft/sp-core-library";
 import { spMockServices } from "../../../SPServices/spMockServices";
 import { IReactDirectoryProps } from './IReactDirectoryProps';
 import Paging from './Pagination/Paging';
+import ReactHtmlParser from 'react-html-parser';
 
 const slice: any = require('lodash/slice');
 const filter: any = require('lodash/filter');
@@ -190,7 +192,8 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         setCurrentPage(1);
         _searchUsers(newvalue);
     };
-    _searchUsers = debounce(500, _searchUsers);
+
+    // _searchUsers = debounce(500, _searchUsers);
 
 
 
@@ -209,13 +212,27 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     }, [props]);
 
     const itemAlignmentsStackTokens: IStackTokens = {
-        childrenGap: 20,       
-      };
-      const stackItemStyles: IStackItemStyles = {
+        childrenGap: 20,
+    };
+    const stackItemStyles: IStackItemStyles = {
         root: {
-          paddingTop: 5,
+            paddingTop: 5,
         },
-      };
+    };
+    //const imagePath=require("../../../../")
+    // const imagePathString=imagePath.toString();
+
+    const imageProps: Partial<IImageProps> = {
+        imageFit: ImageFit.centerCover,
+        width: 200,
+        height: 200,
+        // src:require("../../../../assets/HidingYeti.png"),
+        //src: require("../../../assets/HidingYeti.png"),
+        src: "blob:https://056gc.sharepoint.com/ab311816-855d-4a3b-a471-fe8ec49db8dc"
+    };
+
+    //console.log(imagePath);
+
 
     return (
         <div className={styles.reactDirectory}>
@@ -260,9 +277,21 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                         </div>
                     ) : (
                         <>
+
                             {!pagedItems || pagedItems.length == 0 ? (
                                 <div className={styles.noUsers}>
-                                    <Icon
+                                    <Stack horizontal>
+                                        <div style={{ width: '50%' }}>
+                                            <Image {...imageProps} alt="A hiding yeti" />
+                                        </div>
+
+                                        <div style={{ width: '50%' }}>
+                                           <p>{ReactHtmlParser(strings.DirectoryMessage)}</p> 
+                                            <p><a href="mailto:?subject=Join%20me%20on%20GCXchange!%E2%80%8B&body=Hi!%20%0A%E2%80%8BI%20recently%20joined%20GCXchange%2C%20a%20collaboration%20platform%20that%20allows%20public%20servants%20to%20collaborate%20across%20departments%20and%20agencies.%20Once%20your%20account%20is%20setup%20on%20your%20government%20issued%20device%2C%20GCXchange%20can%20be%20easily%20accessed%20using%20a%20single%20sign-on%20without%20creating%20any%20log-in%20or%20password.%20%E2%80%8B%0A%0ARegistering%20to%20GCXchange%20allows%20you%20to%3A%20%E2%80%8B%0AJoin%20communities%20%E2%80%8B%0A%0ABrowse%20thematic%20hubs%20focusing%20on%20content%20relevant%20to%20public%20services%20%E2%80%8B%0A%0AAccess%20news%20from%20across%20the%20GC%20%E2%80%8B%0A%0AA%20dedicated%20MS%20Teams%20space%20allows%20you%20to%20create%20a%20community%2C%20chat%20and%20collaborate%20in%20real-time%20with%20other%20members%20%E2%80%8B%0A%0AYou%20can%20register%20at%3A%20https%3A%2F%2Fwww.gcx-gce.gc.ca%2F%20%E2%80%8B%0A%20%E2%80%8B%0A%0AI%20look%20forward%20to%20seeing%20you%20online%20there!%20%E2%80%8B">
+                                                Invite a colleague</a></p>
+                                        </div>
+                                    </Stack>
+                                    {/* <Icon
                                         iconName={"ProfileSearch"}
                                         style={{ fontSize: "54px", color: color }}
                                     />
@@ -270,7 +299,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                         <span style={{ marginLeft: 5, fontSize: "26px", color: color }}>
                                             {strings.DirectoryMessage}
                                         </span>
-                                    </Label>
+                                    </Label> */}
                                 </div>
                             ) : (
                                 <>
