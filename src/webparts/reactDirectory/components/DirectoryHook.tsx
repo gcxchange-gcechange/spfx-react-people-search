@@ -223,12 +223,12 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     // const imagePathString=imagePath.toString();
 
     const imageProps: Partial<IImageProps> = {
-        imageFit: ImageFit.centerCover,
-        width: 200,
-        height: 200,
-        // src:require("../../../../assets/HidingYeti.png"),
-        //src: require("../../../assets/HidingYeti.png"),
-        src: "blob:https://056gc.sharepoint.com/ab311816-855d-4a3b-a471-fe8ec49db8dc"
+      imageFit: ImageFit.centerCover,
+      width: 200,
+      height: 200,
+      // src:require("../../../../assets/HidingYeti.png"),
+      //src: require("../../../assets/HidingYeti.png"),
+      src:"https://devgcx.sharepoint.com/SiteAssets/HidingYeti%E2%80%8B.png",
     };
 
     //console.log(imagePath);
@@ -281,7 +281,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                             {!pagedItems || pagedItems.length == 0 ? (
                                 <div className={styles.noUsers}>
                                     <Stack horizontal>
-                                        <div style={{ width: '50%' }}>
+                                        <div style={{ width: '50%' }} className={styles.noUsers}>
                                             <Image {...imageProps} alt="A hiding yeti" />
                                         </div>
 
