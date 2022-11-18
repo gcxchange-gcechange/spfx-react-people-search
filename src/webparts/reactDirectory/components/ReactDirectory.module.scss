@@ -117,4 +117,18 @@
       margin-right: auto;
       margin-bottom: 25px;
   }
+
+  .noUsers a {
+  text-decoration: none;
+  font-size: 15px;
+  padding:10px 20px;
+  color:#fff;
+  background-color: $ms-color-themePrimary;
+  font-weight: 600;
+
+}
+.noUsers a:hover {
+  background-color: $ms-color-themeDark;
+
+}
 }
