@@ -23,7 +23,6 @@
     "office-ui-fabric-react": "6.214.0",
     "react": "16.8.5",
     "react-dom": "16.8.5",
-    "react-html-parser": "^2.0.2",
     "react-js-pagination": "^3.0.3",
     "throttle-debounce": "^5.0.0"
   },
@@ -42,6 +41,7 @@
     "@types/throttle-debounce": "^5.0.0",
     "@types/webpack-env": "1.13.1",
     "ajv": "~5.2.2",
-    "gulp": "~3.9.1"
+    "gulp": "~3.9.1",
+    "react-html-parser": "^2.0.2"
   }
 }
