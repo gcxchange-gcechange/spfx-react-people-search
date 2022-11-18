@@ -226,9 +226,9 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
       imageFit: ImageFit.centerCover,
       width: 200,
       height: 200,
-      // src:require("../../../../assets/HidingYeti.png"),
-      //src: require("../../../assets/HidingYeti.png"),
-      src:"https://devgcx.sharepoint.com/SiteAssets/HidingYeti%E2%80%8B.png",
+      //src:require("../../../../assets/HidingYeti.png"),
+      src: require("../../assets/HidingYeti​.png"),
+      //src:"https://devgcx.sharepoint.com/SiteAssets/HidingYeti%E2%80%8B.png",
     };
 
     //console.log(imagePath);
