@@ -20,6 +20,7 @@ import {
   IStackStyles,
   DefaultPalette,
   IStackItemStyles,
+  FocusZone,
 } from "office-ui-fabric-react";
 
 const EXP_SOURCE: string = "SPFxDirectory";
@@ -241,14 +242,20 @@ export class PersonaCard extends React.Component<
     return (
       <div className={styles.personaContainer}>
         {
-          <HoverCard
-            instantOpenOnClick={true}
-            cardDismissDelay={500}
-            type={HoverCardType.plain}
-            plainCardProps={plainCardProps}
-          >
-            {this._PersonaCard()}
-          </HoverCard>
+         <FocusZone>
+
+         <HoverCard
+           instantOpenOnClick={true}
+           cardDismissDelay={500}
+           type={HoverCardType.plain}
+           plainCardProps={plainCardProps}
+           setInitialFocus={true}
+           trapFocus={true}
+         >
+           {this._PersonaCard()}
+
+         </HoverCard>
+       </FocusZone>
         }
       </div>
     );
