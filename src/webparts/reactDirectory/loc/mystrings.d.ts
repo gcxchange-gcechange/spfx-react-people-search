@@ -9,6 +9,9 @@ declare interface IReactDirectoryWebPartStrings {
   SearchBoxLabel: string;
   NoUserFoundLabelText: string;
   NoUserFoundImageAltText: string;
+  NoUserFoundEmailSubject:string;
+  NoUserFoundEmailBody:string;
+  NoUserFoundEmail:string;
 
 
 }
