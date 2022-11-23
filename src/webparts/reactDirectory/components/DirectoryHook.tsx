@@ -219,20 +219,14 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             paddingTop: 5,
         },
     };
-    //const imagePath=require("../../../../")
-    // const imagePathString=imagePath.toString();
 
     const imageProps: Partial<IImageProps> = {
         imageFit: ImageFit.centerContain,
         width: 200,
         height: 200,
-        //src:require("../../../../assets/HidingYeti.png"),
-        //src: require("../../assets/Yeti_404-02.png"),
-        //src:"https://devgcx.sharepoint.com/SiteAssets/HidingYeti%E2%80%8B.png",
         src: require("../assets/HidingYeti.png")
     };
 
-    //console.log(imagePath);
 
 
     return (
@@ -296,16 +290,6 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                             </span>
                                         </Stack.Item>
                                     </Stack>
-
-                                    {/* <Icon
-                                        iconName={"ProfileSearch"}
-                                        style={{ fontSize: "54px", color: color }}
-                                    />
-                                    <Label>
-                                        <span style={{ marginLeft: 5, fontSize: "26px", color: color }}>
-                                            {strings.DirectoryMessage}
-                                        </span>
-                                    </Label> */}
                                 </div>
                             ) : (
                                 <>
