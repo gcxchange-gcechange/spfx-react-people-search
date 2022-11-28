@@ -236,7 +236,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             <div className={styles.searchBox}>
                 <Stack horizontal tokens={itemAlignmentsStackTokens}>
                     <Stack.Item order={1} styles={stackItemStyles}>
-                        <span>{strings.SearchBoxLabel}</span>
+                        <span><p>{strings.SearchBoxLabel}</p></span>
                     </Stack.Item>
                     <Stack.Item order={2} >
                         <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
@@ -279,7 +279,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                     <Stack horizontal tokens={itemAlignmentsStackTokens}>
                                         <Stack.Item order={1} styles={stackItemStyles}>
                                             <span>
-                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText} />
+                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText} tabIndex={2} />
                                             </span>
                                         </Stack.Item>
                                         <Stack.Item order={2} >

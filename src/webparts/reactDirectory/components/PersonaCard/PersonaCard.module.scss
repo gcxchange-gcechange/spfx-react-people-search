@@ -80,7 +80,7 @@
   font-size: 28px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.customHoverCard:focus {
-  box-shadow: 0 0 3px 5px $ms-color-themeDark;
+.customHoverCard:focus,.ms-button:focus,.ms-SearchBox:focus,a:focus  {
+  box-shadow: 0 0 3px 5px $ms-color-success;
 
 }
