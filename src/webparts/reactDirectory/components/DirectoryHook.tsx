@@ -79,23 +79,23 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
   const diretoryGrid =
     pagedItems && pagedItems.length > 0
       ? pagedItems.map((user: any) => {
-          return (
-            <PersonaCard
-              context={props.context}
-              profileProperties={{
-                DisplayName: user.PreferredName,
-                Title: user.JobTitle,
-                PictureUrl: user.PictureURL,
-                Email: user.WorkEmail,
-                Department: user.Department,
-                WorkPhone: user.WorkPhone,
-                Location: user.OfficeNumber
-                  ? user.OfficeNumber
-                  : user.BaseOfficeLocation,
-              }}
-            />
-          );
-        })
+        return (
+          <PersonaCard
+            context={props.context}
+            profileProperties={{
+              DisplayName: user.PreferredName,
+              Title: user.JobTitle,
+              PictureUrl: user.PictureURL,
+              Email: user.WorkEmail,
+              Department: user.Department,
+              WorkPhone: user.WorkPhone,
+              Location: user.OfficeNumber
+                ? user.OfficeNumber
+                : user.BaseOfficeLocation,
+            }}
+          />
+        );
+      })
       : [];
   const _loadAlphabets = () => {
     let alphabets: string[] = [];
@@ -274,11 +274,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             />
           </Stack.Item>
           <Stack.Item order={3}>
-            <PrimaryButton onClick={() => _searchUsers}>Search</PrimaryButton>
-            <button onClick={() => _searchUsers} type="submit">
-              {" "}
-              Search
-            </button>
+            <PrimaryButton onClick={_searchUsers}>Search</PrimaryButton>
           </Stack.Item>
         </Stack>
 
