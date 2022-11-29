@@ -2,13 +2,18 @@ declare interface IReactDirectoryWebPartStrings {
   SearchPlaceHolder: string;
   PropertyPaneDescription: string;
   BasicGroupName: string;
-  TitleFieldLabel: string; 
+  TitleFieldLabel: string;
   PagingLabel: string;
   DirectoryMessage: string;
   LoadingText: string;
   SearchBoxLabel: string;
-  
-  
+  NoUserFoundLabelText: string;
+  NoUserFoundImageAltText: string;
+  NoUserFoundEmailSubject:string;
+  NoUserFoundEmailBody:string;
+  NoUserFoundEmail:string;
+
+
 }
 
 declare module 'ReactDirectoryWebPartStrings' {

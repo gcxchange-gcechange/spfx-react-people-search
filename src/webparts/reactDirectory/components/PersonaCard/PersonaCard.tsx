@@ -251,6 +251,7 @@ export class PersonaCard extends React.Component<
            plainCardProps={plainCardProps}
            setInitialFocus={true}
            trapFocus={true}
+           className={styles.customHoverCard}
          >
            {this._PersonaCard()}
 

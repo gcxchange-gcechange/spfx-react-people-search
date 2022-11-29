@@ -21,6 +21,7 @@
     margin-right: "auto";
     text-align: "center";
     padding-top: 40px;
+    width: 60%;
   }
 
   .pivotItem {
@@ -117,4 +118,26 @@
       margin-right: auto;
       margin-bottom: 25px;
   }
+
+  .noUsers a {
+  text-decoration: none;
+  font-size: 13px;
+  padding:7px 20px 10px;
+  color:#fff;
+  background-color: $ms-color-themePrimary;
+  font-weight: 400;
+  display: inline-block;
+  margin-Top: 15px;
+  border-color: $ms-color-themePrimary;
+  border-width: 1px;
+  border-radius: 1px;
+  font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system,
+
+
+
+}
+.noUsers a:hover {
+  background-color: $ms-color-themeDark;
+
+}
 }

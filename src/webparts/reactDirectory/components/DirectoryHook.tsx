@@ -7,9 +7,10 @@ import { IReactDirectoryState } from "./IReactDirectoryState";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
-    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption,IStackItemStyles
+    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles, Image, IImageProps, ImageFit
 } from "office-ui-fabric-react";
 import { Stack, IStackStyles, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
+
 import { debounce } from "throttle-debounce";
 import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
 import { ISPServices } from "../../../SPServices/ISPServices";
@@ -17,6 +18,7 @@ import { Environment, EnvironmentType } from "@microsoft/sp-core-library";
 import { spMockServices } from "../../../SPServices/spMockServices";
 import { IReactDirectoryProps } from './IReactDirectoryProps';
 import Paging from './Pagination/Paging';
+import ReactHtmlParser from 'react-html-parser';
 
 const slice: any = require('lodash/slice');
 const filter: any = require('lodash/filter');
@@ -190,7 +192,8 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         setCurrentPage(1);
         _searchUsers(newvalue);
     };
-    _searchUsers = debounce(500, _searchUsers);
+
+    // _searchUsers = debounce(500, _searchUsers);
 
 
 
@@ -209,13 +212,23 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     }, [props]);
 
     const itemAlignmentsStackTokens: IStackTokens = {
-        childrenGap: 20,       
-      };
-      const stackItemStyles: IStackItemStyles = {
+        childrenGap: 20,
+    };
+    const stackItemStyles: IStackItemStyles = {
         root: {
-          paddingTop: 5,
+            paddingTop: 5,
         },
-      };
+        
+    };
+
+    const imageProps: Partial<IImageProps> = {
+        imageFit: ImageFit.centerContain,
+        width: 200,
+        height: 200,
+        src: require("../assets/HidingYeti.png")
+    };
+
+
 
     return (
         <div className={styles.reactDirectory}>
@@ -224,7 +237,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             <div className={styles.searchBox}>
                 <Stack horizontal tokens={itemAlignmentsStackTokens}>
                     <Stack.Item order={1} styles={stackItemStyles}>
-                        <span>{strings.SearchBoxLabel}</span>
+                        <span><label>{strings.SearchBoxLabel}</label></span>
                     </Stack.Item>
                     <Stack.Item order={2} >
                         <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
@@ -260,17 +273,24 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                         </div>
                     ) : (
                         <>
+
                             {!pagedItems || pagedItems.length == 0 ? (
                                 <div className={styles.noUsers}>
-                                    <Icon
-                                        iconName={"ProfileSearch"}
-                                        style={{ fontSize: "54px", color: color }}
-                                    />
-                                    <Label>
-                                        <span style={{ marginLeft: 5, fontSize: "26px", color: color }}>
-                                            {strings.DirectoryMessage}
-                                        </span>
-                                    </Label>
+
+                                    <Stack horizontal tokens={itemAlignmentsStackTokens}>
+                                        <Stack.Item order={1} styles={stackItemStyles} >
+                                            <span>
+                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText}/>
+                                            </span>
+                                        </Stack.Item>
+                                        <Stack.Item order={2} >
+                                            <span>
+                                                <p>{ReactHtmlParser(strings.DirectoryMessage)}</p>
+                                                <p><a href={strings.NoUserFoundEmail}>
+                                                    {strings.NoUserFoundLabelText}</a></p>
+                                            </span>
+                                        </Stack.Item>
+                                    </Stack>
                                 </div>
                             ) : (
                                 <>
