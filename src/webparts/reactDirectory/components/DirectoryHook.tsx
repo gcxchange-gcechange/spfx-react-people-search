@@ -218,6 +218,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         root: {
             paddingTop: 5,
         },
+        
     };
 
     const imageProps: Partial<IImageProps> = {
@@ -236,7 +237,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
             <div className={styles.searchBox}>
                 <Stack horizontal tokens={itemAlignmentsStackTokens}>
                     <Stack.Item order={1} styles={stackItemStyles}>
-                        <span><p>{strings.SearchBoxLabel}</p></span>
+                        <span><label>{strings.SearchBoxLabel}</label></span>
                     </Stack.Item>
                     <Stack.Item order={2} >
                         <SearchBox placeholder={strings.SearchPlaceHolder} className={styles.searchTextBox}
@@ -277,9 +278,9 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                 <div className={styles.noUsers}>
 
                                     <Stack horizontal tokens={itemAlignmentsStackTokens}>
-                                        <Stack.Item order={1} styles={stackItemStyles}>
+                                        <Stack.Item order={1} styles={stackItemStyles} >
                                             <span>
-                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText} tabIndex={2} />
+                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText}/>
                                             </span>
                                         </Stack.Item>
                                         <Stack.Item order={2} >
