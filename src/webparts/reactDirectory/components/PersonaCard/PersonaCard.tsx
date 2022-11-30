@@ -106,7 +106,7 @@ export class PersonaCard extends React.Component<
             secondaryText={this.props.profileProperties.Title}
             tertiaryText={this.props.profileProperties.Department}
             imageUrl={this.props.profileProperties.PictureUrl}
-            size={PersonaSize.size72}
+            size={PersonaSize.size100}
             imageShouldFadeIn={false}
             imageShouldStartVisible={true}
           >
@@ -117,8 +117,10 @@ export class PersonaCard extends React.Component<
                   style={{ fontSize: "12px", verticalAlign: "sub" }}
                 />
                 <span style={{ marginLeft: 5, fontSize: "12px" }}>
-                  {" "}
+                  
                   {this.props.profileProperties.Email}
+                  { <a href = {`mailto: ${this.props.profileProperties.Email}`}>{this.props.profileProperties.Email}</a> }
+
                 </span>
               </div>
             ) : (
