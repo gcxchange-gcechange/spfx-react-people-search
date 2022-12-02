@@ -44,9 +44,11 @@
   padding: 30px;
   min-width: 300px;
   min-height: 150px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: 0 0 50px 10px #999;
   width: auto;
     color: rgb(50, 49, 48);
+    background-color: #eee;
+
 
 }
 .customPopupImg {
@@ -60,7 +62,7 @@
   text-decoration: none;
   font-size: 15px;
   padding:10px 20px;
-  color:#333
+  color:#333;
 }
 .customPopup a:hover {
   background-color: #ccc;
@@ -71,6 +73,8 @@
   justify-content: center;
   text-align: center;
 }
+
+
 .customPopupDisplayName {
   overflow: hidden;
   text-overflow: ellipsis;
