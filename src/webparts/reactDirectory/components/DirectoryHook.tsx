@@ -7,7 +7,7 @@ import { IReactDirectoryState } from "./IReactDirectoryState";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
-    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles, Image, IImageProps, ImageFit, PrimaryButton
+    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles, Image, IImageProps, ImageFit, PrimaryButton, IStyleSet, IPivotStyles
 } from "office-ui-fabric-react";
 import { Stack, IStackStyles, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
 
@@ -234,6 +234,12 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         height: 200,
         src: require("../assets/HidingYeti.png")
     };
+    const piviotStyles: Partial<IStyleSet<IPivotStyles>>={
+        link:{
+            backgroundColor: "#ccc",      
+        }   
+            
+    };
 
     return (
         <div className={styles.reactDirectory}>
@@ -256,7 +262,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                 </Stack>
 
                 <div>
-                    {<Pivot className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
+                    {<Pivot styles={piviotStyles} className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
                         selectedKey={state.indexSelectedKey} onLinkClick={_alphabetChange}
                         linkSize={PivotLinkSize.normal} >
                         {az.map((index: string) => {
