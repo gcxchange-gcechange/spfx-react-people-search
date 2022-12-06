@@ -257,7 +257,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                             onChange={_searchBoxChanged} />
                     </Stack.Item>
                     <Stack.Item order={2} >
-                        <PrimaryButton onClick={_searchUsers}>Search</PrimaryButton>
+                        <PrimaryButton onClick={_searchUsers}>{strings.SearchButtonLabel}</PrimaryButton>
                     </Stack.Item>
                 </Stack>
 
@@ -300,9 +300,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                         <Stack.Item order={2} >
                                             <span>
                                                 <p>{ReactHtmlParser(strings.DirectoryMessage)}</p>
-                                                <PrimaryButton href={strings.NoUserFoundEmail}>Invite a colleague</PrimaryButton>
-                                                {/* <p><a href={strings.NoUserFoundEmail}>
-                                                    {strings.NoUserFoundLabelText}</a></p> */}
+                                                <PrimaryButton href={strings.NoUserFoundEmail}>{strings.NoUserFoundLabelText}</PrimaryButton>
                                             </span>
                                         </Stack.Item>
                                     </Stack>
