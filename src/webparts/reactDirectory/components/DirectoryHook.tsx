@@ -19,6 +19,7 @@ import { spMockServices } from "../../../SPServices/spMockServices";
 import { IReactDirectoryProps } from './IReactDirectoryProps';
 import Paging from './Pagination/Paging';
 import ReactHtmlParser from 'react-html-parser';
+import * as _ from 'lodash';
 
 const slice: any = require('lodash/slice');
 const filter: any = require('lodash/filter');
@@ -200,7 +201,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         );
     };
 
-    // _searchUsers = debounce(500, _searchUsers);
+     _searchUsers = _.debounce(_searchUsers,2500, );
 
 
 
