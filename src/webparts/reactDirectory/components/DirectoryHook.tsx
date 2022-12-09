@@ -7,7 +7,7 @@ import { IReactDirectoryState } from "./IReactDirectoryState";
 import { SelectLanguage } from "./SelectLanguage";
 import {
     Spinner, SpinnerSize, MessageBar, MessageBarType, SearchBox, Icon, Label,
-    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles, Image, IImageProps, ImageFit
+    Pivot, PivotItem, PivotLinkFormat, PivotLinkSize, Dropdown, IDropdownOption, IStackItemStyles, Image, IImageProps, ImageFit, PrimaryButton, IStyleSet, IPivotStyles
 } from "office-ui-fabric-react";
 import { Stack, IStackStyles, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
 
@@ -19,6 +19,7 @@ import { spMockServices } from "../../../SPServices/spMockServices";
 import { IReactDirectoryProps } from './IReactDirectoryProps';
 import Paging from './Pagination/Paging';
 import ReactHtmlParser from 'react-html-parser';
+import * as _ from 'lodash';
 
 const slice: any = require('lodash/slice');
 const filter: any = require('lodash/filter');
@@ -123,17 +124,19 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         });
     };
 
-    let _searchUsers = async (searchText: string) => {
+    let _searchUsers = async () => {
+
         try {
             setstate({
                 ...state,
-                searchText: searchText,
                 isLoading: true,
 
             });
+            const searchText = state.searchText;
             if (searchText.length > 0) {
                 let searchProps: string[] = props.searchProps && props.searchProps.length > 0 ?
-                    props.searchProps.split(',') : ['FirstName'];
+                    props.searchProps.split(',') : ['FirstName', 'LastName', 'PreferredName',];
+
                 let qryText: string = '';
                 let finalSearchText: string = searchText ? searchText.replace(/ /g, '+') : searchText;
                 if (props.clearTextSearchProps) {
@@ -190,10 +193,15 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
 
     const _searchBoxChanged = (newvalue: string): void => {
         setCurrentPage(1);
-        _searchUsers(newvalue);
+        setstate({
+            ...state,
+            searchText: newvalue
+        }
+
+        );
     };
 
-    // _searchUsers = debounce(500, _searchUsers);
+     _searchUsers = _.debounce(_searchUsers,2500, );
 
 
 
@@ -218,7 +226,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         root: {
             paddingTop: 5,
         },
-        
+
     };
 
     const imageProps: Partial<IImageProps> = {
@@ -227,8 +235,12 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         height: 200,
         src: require("../assets/HidingYeti.png")
     };
-
-
+    const piviotStyles: Partial<IStyleSet<IPivotStyles>>={
+        link:{
+            backgroundColor: "#ccc",      
+        }   
+            
+    };
 
     return (
         <div className={styles.reactDirectory}>
@@ -245,10 +257,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                             value={state.searchText}
                             onChange={_searchBoxChanged} />
                     </Stack.Item>
+                    <Stack.Item order={2} >
+                        <PrimaryButton onClick={_searchUsers}>{strings.SearchButtonLabel}</PrimaryButton>
+                    </Stack.Item>
                 </Stack>
 
                 <div>
-                    {<Pivot className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
+                    {<Pivot styles={piviotStyles} className={styles.alphabets} linkFormat={PivotLinkFormat.tabs}
                         selectedKey={state.indexSelectedKey} onLinkClick={_alphabetChange}
                         linkSize={PivotLinkSize.normal} >
                         {az.map((index: string) => {
@@ -280,14 +295,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                                     <Stack horizontal tokens={itemAlignmentsStackTokens}>
                                         <Stack.Item order={1} styles={stackItemStyles} >
                                             <span>
-                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText}/>
+                                                <Image {...imageProps} alt={strings.NoUserFoundImageAltText} />
                                             </span>
                                         </Stack.Item>
                                         <Stack.Item order={2} >
                                             <span>
                                                 <p>{ReactHtmlParser(strings.DirectoryMessage)}</p>
-                                                <p><a href={strings.NoUserFoundEmail}>
-                                                    {strings.NoUserFoundLabelText}</a></p>
+                                                <PrimaryButton href={strings.NoUserFoundEmail}>{strings.NoUserFoundLabelText}</PrimaryButton>
                                             </span>
                                         </Stack.Item>
                                     </Stack>
