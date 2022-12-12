@@ -103,12 +103,12 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         let users = null;
         if (initialSearch) {
             if (props.searchFirstName)
-                users = await _services.searchUsersNew('', `FirstName:a*`, false);
-            else users = await _services.searchUsersNew('a', '', true);
+                users = await _services.searchUsersNew(props.context,'', `FirstName:a*`, false);
+            else users = await _services.searchUsersNew(props.context,'a', '', true);
         } else {
             if (props.searchFirstName)
-                users = await _services.searchUsersNew('', `FirstName:${alphaKey}*`, false);
-            else users = await _services.searchUsersNew(`${alphaKey}`, '', true);
+                users = await _services.searchUsersNew(props.context,'', `FirstName:${alphaKey}*`, false);
+            else users = await _services.searchUsersNew(props.context,`${alphaKey}`, '', true);
         }
         setstate({
             ...state,
@@ -169,7 +169,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                     });
                 }
                 console.log(qryText);
-                const users = await _services.searchUsersNew('', qryText, false);
+                const users = await _services.searchUsersNew(props.context,'', qryText, false);
                 setstate({
                     ...state,
                     searchText: searchText,

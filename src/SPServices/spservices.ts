@@ -4,6 +4,8 @@ import { sp, PeoplePickerEntity, ClientPeoplePickerQueryParameters, SearchQuery,
 import { PrincipalType } from "@pnp/sp/src/sitegroups";
 import { isRelativeUrl } from "office-ui-fabric-react";
 import { ISPServices } from "./ISPServices";
+import { MSGraphClient } from "@microsoft/sp-http";
+import * as MicrosoftGraph from "@microsoft/microsoft-graph-types";
 
 
 export class spservices implements ISPServices {
@@ -32,7 +34,7 @@ export class spservices implements ISPServices {
         }
     }
 
-    public async _getImageBase64 (pictureUrl: string): Promise<string> {
+    public async _getImageBase64(pictureUrl: string): Promise<string> {
         return new Promise((resolve, reject) => {
             let image = new Image();
             image.addEventListener("load", () => {
@@ -52,8 +54,9 @@ export class spservices implements ISPServices {
         });
     }
 
-    public async searchUsersNew(searchString: string, srchQry: string, isInitialSearch: boolean, pageNumber?: number): Promise<SearchResults> {
+    public async searchUsersNew(context: any, searchString: string, srchQry: string, isInitialSearch: boolean, pageNumber?: number): Promise<SearchResults> {
         let qrytext: string = '';
+        let client = await context.msGraphClientFactory.getClient();
         if (isInitialSearch) qrytext = `FirstName:${searchString}* OR LastName:${searchString}*`;
 
         else {
@@ -76,12 +79,22 @@ export class spservices implements ISPServices {
             if (users && users.PrimarySearchResults.length > 0) {
                 for (let index = 0; index < users.PrimarySearchResults.length; index++) {
                     let user: any = users.PrimarySearchResults[index];
-                    if (user.PictureURL) {
-                        user = { ...user, PictureURL: `/_layouts/15/userphoto.aspx?size=M&accountname=${user.WorkEmail}` };
-                        users.PrimarySearchResults[index] = user;
-                    }
+                    let res = await client
+                        .api(`/users/${user.WorkEmail}/photo/$value`)
+                        .get()
+                        .then(() => {
+                            user = { ...user, PictureURL: `/_layouts/15/userphoto.aspx?size=M&accountname=${user.WorkEmail}` };
+                            users.PrimarySearchResults[index] = user;
+
+                        })
+                        .catch((red) => {
+                            user = { ...user, PictureURL: null };
+                            users.PrimarySearchResults[index] = user;
+
+                        });
                 }
             }
+            console.log("users", users);
             return users;
         } catch (error) {
             Promise.reject(error);

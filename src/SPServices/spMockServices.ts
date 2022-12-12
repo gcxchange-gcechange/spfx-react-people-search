@@ -109,7 +109,7 @@ export class spMockServices implements ISPServices {
 
     }
 
-    public async searchUsersNew(searchString: string, srchQry: string, isInitialSearch: boolean, pageNumber?: number) {
+    public async searchUsersNew(contex:any,searchString: string, srchQry: string, isInitialSearch: boolean, pageNumber?: number) {
         let filtervalue = searchString.trim().toLowerCase();
         if (searchString.length > 0 && filtervalue.lastIndexOf("*") == searchString.length - 1) {
             // remove last '*'
