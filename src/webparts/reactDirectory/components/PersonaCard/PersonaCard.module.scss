@@ -46,27 +46,13 @@
   min-height: 150px;
   box-shadow: 0 0 50px 10px #999;
   width: auto;
-    color: rgb(50, 49, 48);
-    background-color: #eee;
+    color: #222;
+    background-color: #ccc;
 
 
 }
-.customPopupImg {
-  width: 100px;
-  height: 100px;
-}
-.customPopupImg img {
-  border-radius: 50%;
-}
-.customPopup a {
-  text-decoration: none;
-  font-size: 15px;
-  padding:10px 20px;
-  color:#333;
-}
-.customPopup a:hover {
-  background-color: #ccc;
-
+.popupPrimaryButton{
+  margin-top: 30px;
 }
 
 :global(.ms-Stack) {

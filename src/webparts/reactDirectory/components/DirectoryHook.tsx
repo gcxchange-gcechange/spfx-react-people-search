@@ -68,6 +68,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                 return (
                     <PersonaCard
                         context={props.context}
+                        prefLang={props.prefLang}
                         profileProperties={{
                             DisplayName: user.PreferredName,
                             Title: user.JobTitle,

@@ -7,6 +7,7 @@ declare interface IReactDirectoryWebPartStrings {
   DirectoryMessage: string;
   LoadingText: string;
   SearchBoxLabel: string;
+  SendEmailLabel:string;
   NoUserFoundLabelText: string;
   NoUserFoundImageAltText: string;
   NoUserFoundEmailSubject:string;

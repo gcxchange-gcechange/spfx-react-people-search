@@ -21,7 +21,9 @@ import {
   DefaultPalette,
   IStackItemStyles,
   FocusZone,
+  PrimaryButton,
 } from "office-ui-fabric-react";
+import { SelectLanguage } from "../SelectLanguage";
 
 const EXP_SOURCE: string = "SPFxDirectory";
 const LIVE_PERSONA_COMPONENT_ID: string =
@@ -61,7 +63,7 @@ export class PersonaCard extends React.Component<
   public componentDidUpdate(
     prevProps: IPersonaCardProps,
     prevState: IPersonaCardState
-  ): void {}
+  ): void { }
 
   /**
    *
@@ -95,6 +97,7 @@ export class PersonaCard extends React.Component<
    * @memberof PersonaCard
    */
   private _PersonaCard(): JSX.Element {
+    const strings = SelectLanguage(this.props.prefLang);
     return (
       <DocumentCard
         className={styles.documentCard}
@@ -117,8 +120,8 @@ export class PersonaCard extends React.Component<
                   style={{ fontSize: "12px", verticalAlign: "sub" }}
                 />
                 <span style={{ marginLeft: 5, fontSize: "12px" }}>
-                  
-                  { <a href = {`mailto: ${this.props.profileProperties.Email}`}>{this.props.profileProperties.Email}</a> }
+
+                  {<a href={`mailto: ${this.props.profileProperties.Email}`}>{this.props.profileProperties.Email}</a>}
 
                 </span>
               </div>
@@ -169,6 +172,8 @@ export class PersonaCard extends React.Component<
   }
 
   private onRenderPlainCard = (): JSX.Element => {
+    const strings = SelectLanguage(this.props.prefLang);
+
     // Tokens definition
     const containerStackTokens: IStackTokens = { childrenGap: 5 };
     const horizontalGapStackTokens: IStackTokens = {
@@ -190,44 +195,25 @@ export class PersonaCard extends React.Component<
     };
     return (
       <div className={styles.customPopup}>
-        <Stack>
-          <Stack horizontal tokens={itemAlignmentsStackTokens}>
-            <Stack.Item align="auto" styles={stackItemStyles}>
-              <div className={styles.customPopupImg}>
-                <img
-                  src={this.props.profileProperties.PictureUrl}
-                  alt={this.props.profileProperties.DisplayName}
-                />
-              </div>
-            </Stack.Item>
-            <Stack.Item align="stretch" styles={stackItemStyles}>
-              <div>
-                <p className={styles.customPopupDisplayName}>
-                  {this.props.profileProperties.DisplayName}
-                </p>
-              </div>
-            </Stack.Item>
-          </Stack>
-          <Stack horizontal tokens={itemAlignmentsStackTokens}>
-            <Stack.Item align="center" styles={stackItemStyles}>
-              <div>
-                <a
-                  href={`mailto:${this.props.profileProperties.Email}`}
-                  target="_blank"
-                >
-                  <Icon
-                    iconName="PublicEmail"
-                    style={{ verticalAlign: "sub", marginRight: 5 }}
-                  />
-                  Send email
-                </a>
-              </div>
-            </Stack.Item>
-           
-          </Stack>
+        <Stack tokens={itemAlignmentsStackTokens}>
+          <Stack.Item align="auto" styles={stackItemStyles}>
+            <Persona
+              text={this.props.profileProperties.DisplayName}
+              secondaryText={this.props.profileProperties.Email}
+              tertiaryText={this.props.profileProperties.WorkPhone}
+              imageUrl={this.props.profileProperties.PictureUrl}
+              size={PersonaSize.size72}
+              imageShouldFadeIn={false}
+              imageShouldStartVisible={true}
+            />
+          </Stack.Item>
+          <Stack.Item align="center" styles={stackItemStyles}>
+            <PrimaryButton href={`mailto: ${this.props.profileProperties.Email}`}>{strings.SendEmailLabel}</PrimaryButton>
+          </Stack.Item>
         </Stack>
       </div>
     );
+
   }
 
   /**
@@ -243,21 +229,21 @@ export class PersonaCard extends React.Component<
     return (
       <div className={styles.personaContainer}>
         {
-         <FocusZone>
+          <FocusZone>
 
-         <HoverCard
-           instantOpenOnClick={true}
-           cardDismissDelay={500}
-           type={HoverCardType.plain}
-           plainCardProps={plainCardProps}
-           setInitialFocus={true}
-           trapFocus={true}
-           className={styles.customHoverCard}
-         >
-           {this._PersonaCard()}
+            <HoverCard
+              instantOpenOnClick={true}
+              cardDismissDelay={500}
+              type={HoverCardType.plain}
+              plainCardProps={plainCardProps}
+              setInitialFocus={true}
+              trapFocus={true}
+              className={styles.customHoverCard}
+            >
+              {this._PersonaCard()}
 
-         </HoverCard>
-       </FocusZone>
+            </HoverCard>
+          </FocusZone>
         }
       </div>
     );

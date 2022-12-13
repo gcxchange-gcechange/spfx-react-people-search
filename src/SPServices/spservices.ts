@@ -68,6 +68,7 @@ export class spservices implements ISPServices {
         }
         const searchProperties: string[] = ["FirstName", "LastName", "PreferredName", "WorkEmail", "OfficeNumber", "PictureURL", "WorkPhone", "MobilePhone", "JobTitle", "Department", "Skills", "PastProjects", "BaseOfficeLocation", "SPS-UserType", "GroupId"];
         try {
+            console.log(qrytext);
             let users = await sp.search(<SearchQuery>{
                 Querytext: qrytext,
                 RowLimit: 500,
@@ -92,6 +93,8 @@ export class spservices implements ISPServices {
                             users.PrimarySearchResults[index] = user;
 
                         });
+
+
                 }
             }
             console.log("users", users);
