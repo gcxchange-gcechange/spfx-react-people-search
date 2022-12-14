@@ -5,4 +5,5 @@ import { IUserProperties } from "./IUserProperties";
 export interface IPersonaCardProps {
   context: WebPartContext | ApplicationCustomizerContext;
   profileProperties: IUserProperties;
+  prefLang: string;
 }

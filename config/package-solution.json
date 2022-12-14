@@ -12,7 +12,11 @@
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": ""
-    }
+    },
+    "webApiPermissionRequests": [{
+      "resource": "Microsoft Graph",
+      "scope": "User.Read.All"
+    }]
   },
   "paths": {
     "zippedPackage": "solution/react-directory.sppkg"
