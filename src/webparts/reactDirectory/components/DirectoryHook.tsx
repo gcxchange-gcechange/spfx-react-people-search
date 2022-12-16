@@ -31,7 +31,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     const strings = SelectLanguage(props.prefLang);
     let _services: ISPServices = null;
     if (Environment.type === EnvironmentType.Local) {
-        _services = new spMockServices();
+        _services = new spservices(props.context);
     } else {
         _services = new spservices(props.context);
     }
@@ -48,6 +48,8 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
     });
 
     const color = props.context.microsoftTeams ? "white" : "";
+    const hidingUsers: string[] =props.hidingUsers && props.hidingUsers.length > 0 ? props.hidingUsers.split(",") : [];
+    console.log("hidingUsers",hidingUsers);
     // Paging
     const [pagedItems, setPagedItems] = useState<any[]>([]);
     const [pageSize, setPageSize] = useState<number>(props.pageSize ? props.pageSize : 10);
@@ -104,12 +106,36 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         let users = null;
         if (initialSearch) {
             if (props.searchFirstName)
-                users = await _services.searchUsersNew(props.context,'', `FirstName:a*`, false);
-            else users = await _services.searchUsersNew(props.context,'a', '', true);
+                users = await _services.searchUsersNew(
+                  props.context,
+                  "",
+                  `FirstName:a*`,
+                  false,
+                  hidingUsers
+                );
+            else users = await _services.searchUsersNew(
+              props.context,
+              "a",
+              "",
+              true,
+              hidingUsers
+            );
         } else {
             if (props.searchFirstName)
-                users = await _services.searchUsersNew(props.context,'', `FirstName:${alphaKey}*`, false);
-            else users = await _services.searchUsersNew(props.context,`${alphaKey}`, '', true);
+                users = await _services.searchUsersNew(
+                  props.context,
+                  "",
+                  `FirstName:${alphaKey}*`,
+                  false,
+                  hidingUsers
+                );
+            else users = await _services.searchUsersNew(
+              props.context,
+              `${alphaKey}`,
+              "",
+              true,
+              hidingUsers
+            );
         }
         setstate({
             ...state,
@@ -170,7 +196,13 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
                     });
                 }
                 console.log(qryText);
-                const users = await _services.searchUsersNew(props.context,'', qryText, false);
+                const users = await _services.searchUsersNew(
+                  props.context,
+                  "",
+                  qryText,
+                  false,
+                  hidingUsers
+                );
                 setstate({
                     ...state,
                     searchText: searchText,
@@ -202,7 +234,7 @@ const DirectoryHook: React.FC<IReactDirectoryProps> = (props) => {
         );
     };
 
-     _searchUsers = _.debounce(_searchUsers,2500, );
+     _searchUsers = _.debounce(_searchUsers,500,);
 
 
 

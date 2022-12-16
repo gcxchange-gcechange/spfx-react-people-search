@@ -21,7 +21,9 @@
     "description": { "default": "ReactDirectory description" },
     "officeFabricIconFontName": "ProfileSearch",
     "properties": {
-      "description": "ReactDirectory"
+      "description": "ReactDirectory",
+      "pageSize":9,
+      "hidingUsers":"test,hello"
     }
   }]
 }

@@ -21,28 +21,26 @@ export interface IReactDirectoryWebPartProps {
   clearTextSearchProps: string;
   pageSize: number;
   prefLang: string;
+  hidingUsers: string;
+  
 }
 
 export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactDirectoryWebPartProps> {
 
   public render(): void {
     const element: React.ReactElement<IReactDirectoryProps> =
-      React.createElement(
-        DirectoryHook,
-        {
-          title: this.properties.title,
-          context: this.context,
-          searchFirstName: this.properties.searchFirstName,
-          displayMode: this.displayMode,
-          updateProperty: (value: string) => {
-            this.properties.title = value;
-          },
-          searchProps: this.properties.searchProps,
-          clearTextSearchProps: this.properties.clearTextSearchProps,
-          pageSize: this.properties.pageSize,
-          prefLang: this.properties.prefLang,
-        }
-      );
+      React.createElement(DirectoryHook, {
+        title: this.properties.title,
+        context: this.context,
+        displayMode: this.displayMode,
+        updateProperty: (value: string) => {
+          this.properties.title = value;
+        },
+        pageSize: this.properties.pageSize,
+        prefLang: this.properties.prefLang,
+        hidingUsers: this.properties.hidingUsers,
+        searchFirstName: this.properties.searchFirstName,
+      });
 
     ReactDom.render(element, this.domElement);
   }
@@ -64,37 +62,41 @@ export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactD
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: strings.PropertyPaneDescription,
           },
           groups: [
             {
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyPaneTextField("title", {
-                  label: strings.TitleFieldLabel
+                  label: strings.TitleFieldLabel,
                 }),
-                PropertyPaneDropdown('prefLang', {
-                  label: 'Preferred Language',
+                PropertyPaneDropdown("prefLang", {
+                  label: "Preferred Language",
                   options: [
-                    { key: 'account', text: 'Account' },
-                    { key: 'en-us', text: 'English' },
-                    { key: 'fr-fr', text: 'Français' }
-                  ]
+                    { key: "account", text: "Account" },
+                    { key: "en-us", text: "English" },
+                    { key: "fr-fr", text: "Français" },
+                  ],
+                }),
+                PropertyPaneTextField("hidingUsers", {
+                  label: "Users not in serach",
+                  description:"Enter the users' emails who don't need to be in search separated by comma "
                 }),
 
-                PropertyPaneSlider('pageSize', {
-                  label: 'Results per page',
+                PropertyPaneSlider("pageSize", {
+                  label: "Results per page",
                   showValue: true,
                   max: 20,
                   min: 2,
                   step: 2,
-                  value: this.properties.pageSize
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                  value: this.properties.pageSize,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }
