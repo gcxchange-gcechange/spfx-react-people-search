@@ -22,8 +22,7 @@
     "officeFabricIconFontName": "ProfileSearch",
     "properties": {
       "description": "ReactDirectory",
-      "pageSize":9,
-      "hidingUsers":"test,hello"
+      "pageSize":9
     }
   }]
 }

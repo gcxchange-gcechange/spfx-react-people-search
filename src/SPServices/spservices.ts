@@ -89,7 +89,7 @@ export class spservices implements ISPServices {
     searchString: string,
     srchQry: string,
     isInitialSearch: boolean,
-    hidingUsers: any,
+    hidingUsers: string[],
     pageNumber?: number
   ): Promise<SearchResults> {
     let qrytext: string = "";
@@ -137,24 +137,23 @@ export class spservices implements ISPServices {
           { Property: "FirstName", Direction: SortDirection.Ascending },
         ],
       });
-      let finalUsers = [];
-      if (users && users.PrimarySearchResults.length > 0) {
+      let n=users.PrimarySearchResults.length;
+      if (users &&  n > 0) {
         for (
           let index = 0;
-          index < users.PrimarySearchResults.length;
+          index < n;
           index++
         ) {
           let user: any = users.PrimarySearchResults[index];
+          console.log("users", users);
           //if (hidingUsers.indexOf(user.WorkEmail) != -1) {
-          if (
-            hidingUsers.filter((x) => {
-              return x == user.WorkEmail;
-            }).length >0
-          ) {
-            users.PrimarySearchResults.splice(index,1);
+          if (hidingUsers.indexOf(user.UniqueId) != -1) {
+            users.PrimarySearchResults.splice(index, 1);
+            n=n-1;
+            index=index-1;
           } else {
             let res = await client
-              .api(`/users/${user.WorkEmail}/photo/$value`)
+              .api(`/users/${user.UniqueId}/photo/$value`)
               .get()
               .then(() => {
                 user = {
@@ -167,11 +166,10 @@ export class spservices implements ISPServices {
                 user = { ...user, PictureURL: null };
                 users.PrimarySearchResults[index] = user;
               });
-            finalUsers.push;
           }
         }
       }
-      console.log("users", users);
+     // console.log("users", users);
       return users;
     } catch (error) {
       Promise.reject(error);
