@@ -81,9 +81,11 @@ export default class ReactDirectoryWebPart extends BaseClientSideWebPart<IReactD
                 }),
                 PropertyPaneTextField("hidingUsers", {
                   label: "Users not in serach",
-                  description:"Enter the users' emails who don't need to be in search separated by comma "
-                }),
+                  description:"Enter the users' emails who don't need to be in search separated by comma ",
+                  multiline:true,
+                  rows:10	
 
+                }),
                 PropertyPaneSlider("pageSize", {
                   label: "Results per page",
                   showValue: true,

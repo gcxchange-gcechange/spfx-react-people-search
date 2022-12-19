@@ -1,6 +1,6 @@
 define([], function () {
   return {
-    SearchPlaceHolder: "Search by first name ff",
+    SearchPlaceHolder: "Search by first name 10",
     PropertyPaneDescription: "Search People from Organization Directory",
     BasicGroupName: "Properties",
     TitleFieldLabel: "Web Part Title",  
