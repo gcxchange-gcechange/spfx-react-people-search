@@ -10,4 +10,5 @@ export interface IReactDirectoryProps {
   clearTextSearchProps?: string;
   pageSize?: number;
   prefLang: string;
+  hidingUsers:string;
 }
